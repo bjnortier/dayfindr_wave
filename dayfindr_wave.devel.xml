@@ -270,7 +270,7 @@
 	 var div = document.getElementById('content_div');
 
 	 function addComment(formId, year, month, day) {
-	   
+	   console.log(formId);
 	   var form = document.getElementById (formId);
 	   var inputs = form.getElementsByTagName ('input');
 	   if (inputs) {
