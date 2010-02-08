@@ -305,14 +305,11 @@
 		       currentDay.year == attend.year) {
 
 		     currentDay.message = comment;
-		     newDays[copyIndex] = currentDay;
-		   } else {
-		     newDays[copyIndex] = currentDay;
-		     ++copyIndex;
-		   }
+		   } 
+		   newDays[copyIndex] = currentDay;
+		   ++copyIndex;
 		 }
 
-		   
 		 var checked = wave.getState().get(viewerId);
 		 var delta = {};
 		 delta[viewerId] = JSON.stringify(newDays);
