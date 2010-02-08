@@ -272,7 +272,7 @@
 	 function addComment(formId, year, month, day) {
 	   
 	   var form = document.getElementById (formId);
-	   var inputs = radios.getElementsByTagName ('input');
+	   var inputs = form.getElementsByTagName ('input');
 	   if (inputs) {
 	     for (var i = 0; i < inputs.length; ++i) {
 	       if (inputs[i].name == 'comment') {
