@@ -108,6 +108,7 @@
 	   var numberOfDaysLeft = days.length;
 	   var calHtml = '';
 
+	   var viewerId = wave.getViewer().getId();
 	   var reverseLookup = {};
 	   var messages = {};
 	   var keys = wave.getState().getKeys();
@@ -135,9 +136,9 @@
 	       reverseLookup[dateKey].push(participantId);
 	       
 	       if (messages[dateKey] == undefined) {
-		 messages[dateKey] = [];
+		 messages[dateKey] = {};
 	       }
-	       messages[dateKey].push(message);
+	       messages[dateKey][participantId] = message;
 	     }
 	   }
 	   
@@ -186,26 +187,28 @@
 		   var messagesForDay = messages[dateKey] || [];
 
 		   var numberOfAttendees = attendeesForDay.length;
-		   var numberOfColumns =  Math.ceil(Math.sqrt(numberOfAttendees));
 
 		   /* Render the profile picture grid */
-		   calHtml += '<table class="participantGrid"><tr>';
+		   calHtml += '<div>';
 		   for (var a = 0; a < numberOfAttendees; ++a) {
-		     calHtml += '<td>';
-		     var participant = wave.getParticipantById(attendeesForDay[a]);
+
+		     var participantId = attendeesForDay[a];
+		     var participant = wave.getParticipantById(participantId);
 		     var thumbnailURL = participant.getThumbnailUrl();
 		     calHtml += '<img src="' + thumbnailURL + '" title="' + participant.getDisplayName() + '" + alt="' + participantId + '" width="27px" height="27px" onload="gadgets.window.adjustHeight();"/>';
 
-		     
-		     calHtml += '<form action="" method=""><input type="text"/><input type="submit" value="Ok"/></form>'
-		     calHtml += '</td>';
+		     if (messagesForDay[dateKey] != undefined
+			 &&
+			 messagesForDay[dateKey][participantId] != undefined) {
+		       
+		       calHtml += '<span class="comment">' + messagesForDay[dateKey][participantId] + '</span>';
 
-		     // Break it up to a sqrt(n) x sqrt(n) grid of images
- 		     if ((a + 1) % numberOfColumns == 0) {
-		       calHtml += '</tr><tr>';
+		     if (participantId == viewerId) {
+		       calHtml += '<form action="" method=""><input type="text"/><input type="submit" value="Ok"/></form>';
 		     }
+
 		   }
-		   calHtml += '</tr></table>';
+		   calHtml += '</div>';
 
 		   /* Render the messages */
 		   calHtml += '<div>';
@@ -258,6 +261,10 @@
 	 }
 	 
 	 var div = document.getElementById('content_div');
+
+	 function toggleMessageBox(id) {
+	   $(id).
+	 }
 
 	 function dayClicked(year, month, day) {
 
