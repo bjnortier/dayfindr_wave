@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+<ModulePrefs title="State Example" height="800" scrolling="true">
+  <Require feature="wave" /> 
+  <Require feature="dynamic-height" />
+</ModulePrefs>
+<Content type="html">
+<![CDATA[ 
+
+	 <style  TYPE="text/css">
+
+  div.dayfindr_gadget_container {
+    text-align: center;
+  }
+
+
+  div.dayfindr_month h2 {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  table.dayfindr_month {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+    text-align: center;
+    padding: 5px;
+    border-spacing: 0px;
+    border: solid thin black;
+    border-collapse: collapse;
+  }
+
+  table.dayfindr_month td {
+  padding: 5px;
+  border: solid thin grey;
+  text-align: center;
+  }
+
+
+
+
+  div.dayfindr_gadget_container table.participantGrid {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  table.participantGrid td {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  
+
+  table.dayfindr_month th {
+  background-color: #006;
+  font-weight: normal;
+  color: white;
+  }
+  
+
+  div.footer {
+    font-size: 0.8em;
+  }
+ 
+	 </style>
+	 <div id="content_div"></div>
+	 <script type="text/javascript">
+
+	 var months = [];
+	 months[0] = "January";
+	 months[1] = "February";
+	 months[2] = "March";
+	 months[3] = "April";
+	 months[4] = "May";
+	 months[5] = "June";
+	 months[6] = "July";
+	 months[7] = "August";
+	 months[8] = "September";
+	 months[9] = "October";
+	 months[10] = "November";
+	 months[11] = "December";
+
+
+	 function getNextYearAndMonth(year, month) {
+	   var yearAndMonth = [];
+	   if (month == 11) {
+	     yearAndMonth[0] = year + 1;
+	     yearAndMonth[1] = 0;
+	   } else {
+	     yearAndMonth[0] = year;
+	     yearAndMonth[1] = month + 1;
+	   }
+	   return yearAndMonth;
+	 }
+
+	 function daysInMonth(year, month) {
+	   return 32 - new Date(year, month, 32).getDate();
+	 }
+
+	 function createMonthHTML(days) {
+
+	   var preSync = true;
+	   var postSync = false;
+	   var dayOffset = 0;
+	   var numberOfDaysLeft = days.length;
+	   var calHtml = '';
+
+	   var reverseLookup = {};
+	   var keys = wave.getState().getKeys();
+	   for (var i = 0; i < keys.length; ++i) {
+	     var participantId = keys[i];
+	     
+	     var daysAttending = JSON.parse(wave.getState().get(participantId));
+	     /*alert(participantId + ':' + wave.getState().get(participantId) + ':' + daysAttending);*/
+	     for (var j = 0; j < daysAttending.length; ++j) {
+	       dayAttending = JSON.stringify(daysAttending[j]);
+	       if (reverseLookup[dayAttending] == undefined) {
+		 reverseLookup[dayAttending] = [];
+	       }
+	       reverseLookup[dayAttending].push(participantId);
+	     }
+	   }
+	   
+	   calHtml += '<table class="dayfindr_month">';
+	   calHtml += '<tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>';
+	   for (var week = 0; (week < 6) && (numberOfDaysLeft > 0); ++week) {
+
+
+	     calHtml += '<tr>';
+	     for (var dayOfWeek = 0; dayOfWeek < 7; ++dayOfWeek) {
+
+	       var i = week*7 + dayOfWeek;
+	       if (preSync) {
+		 if (((days[0].getDay() + 6) % 7)  == i) {
+		   preSync = false;
+		   dayOffset = i;
+		 }
+	       } else {
+		 if ((i - dayOffset) >= days.length) {
+		   postSync = true;
+		 }
+	       }
+
+	       if (preSync) {
+		 calHtml += '<td></td>';
+	       } else if (postSync) {
+		 calHtml += '<td></td>';
+	       } else {
+		 var date = days[i - dayOffset];
+		 var year = date.getFullYear();
+		 var month = date.getMonth();
+		 var day = date.getDate();
+		 var onclick = 'dayClicked(' + year + ',' + month + ',' + day + ')';
+		 calHtml += '<td class="dayfindr"><div><a href="#" onclick="' + onclick + '">' + date.getDate() + '</a></div>';
+
+		 var keys = wave.getState().getKeys();
+		 var newInner = '';
+
+		 var dayStruct = {};
+		 dayStruct.year = year;
+		 dayStruct.month = month;
+		 dayStruct.day = day;
+		 dayKey = JSON.stringify(dayStruct);
+		 
+
+		 if (reverseLookup[dayKey] != undefined) {
+		   var attendees = reverseLookup[dayKey];
+		   var numberOfAttendees = attendees.length;
+		   var numberOfColumns =  Math.ceil(Math.sqrt(numberOfAttendees));
+
+		   calHtml += '<table class="participantGrid"><tr>';
+
+		   for (var a = 0; a < numberOfAttendees; ++a) {
+		     calHtml += '<td>';
+		     var participant = wave.getParticipantById(attendees[a]);
+		     var thumbnailURL = participant.getThumbnailUrl();
+		     calHtml += '<img src="' + thumbnailURL + '" title="' + participant.getDisplayName() + '" + alt="' + participantId + '" width="27px" height="27px" onload="gadgets.window.adjustHeight();"/>';
+		     calHtml += '</td>';
+
+		     // Break it up to a sqrt(n) x sqrt(n) grid of images
+ 		     if ((a + 1) % numberOfColumns == 0) {
+		       calHtml += '</tr><tr>';
+		     }
+
+		     
+		   }
+		   calHtml += '</tr></table>';
+
+
+		 }
+
+
+		 calHtml += '</td>';
+
+		 --numberOfDaysLeft;
+	       }
+   
+	     }
+	     calHtml += '</tr>';
+	   }
+    
+	   calHtml += '</table>';
+	   return calHtml;
+	 }
+
+	 function createCalendarHTML() {
+	   var calendarHtml = '<div class="dayfindr_gadget_container">';
+
+	   var today = new Date();
+	   year = today.getFullYear();
+	   month = today.getMonth();
+	   for (var i = 0; i < 2; ++i) {
+    
+	     var N = daysInMonth(year, month);
+	     var days = [];
+	     for (var d = 0; d < N; ++d) {
+	       days[d] = new Date(year, month, d + 1);
+	     }
+
+	     calendarHtml += '<div class="dayfindr_month"><h2>' + months[month] + ' ' + year + '</h2>';
+	     calendarHtml += createMonthHTML(days);
+	     calendarHtml += '</div>';
+	   
+	     var nextYearAndMonth = getNextYearAndMonth(year, month);
+	     year = nextYearAndMonth[0];
+	     month = nextYearAndMonth[1];
+	   }
+
+	   calendarHtml += '<div class="footer">Gadget URL: http://github.com/bjnortier/dayfindr_wave/raw/master/dayfindr_wave.xml</div>';
+	   calendarHtml += '<div class="footer">v0.5 &copy;2009 <a href="http://www.dayfindr.com">dayfindr.com</a></div>';
+	   calendarHtml += '</div>';
+	   return calendarHtml;
+	 }
+	 
+	 var div = document.getElementById('content_div');
+
+	 function dayClicked(year, month, day) {
+
+	   var attend = {};
+	   attend.year = year;
+	   attend.month = month;
+	   attend.day = day;
+	   
+	   var viewerId = wave.getViewer().getId();
+	   var daysJSON = wave.getState().get(viewerId, '[]');
+	   var currentDays = JSON.parse(daysJSON);
+	   var newDays = new Array();
+	   var found = false;
+	   var copyIndex = 0;
+	   for(var i = 0; i < currentDays.length; ++i) {
+	     currentDay = currentDays[i];
+	     if (currentDay.day == attend.day
+		 &&
+		 currentDay.month == attend.month
+		 &&
+		 currentDay.year == attend.year) {
+	     } else {
+	       newDays[copyIndex] = currentDay;
+	       ++copyIndex;
+	     }
+	   }
+	   // If the result is the same length as the original,
+	   // the current day was not found so it must be appended
+	   if (copyIndex == currentDays.length) {
+	     newDays[copyIndex] = attend;
+	   }
+		   
+	   var checked = wave.getState().get(viewerId);
+	   var delta = {};
+	   delta[viewerId] = JSON.stringify(newDays);
+	   wave.getState().submitDelta(delta);
+	 }
+	       
+	 function stateUpdated() {
+	   div.innerHTML = createCalendarHTML();
+	   gadgets.window.adjustHeight();
+	 }
+ 
+	 function init() {
+	   if (wave && wave.isInWaveContainer()) {
+	     wave.setStateCallback(stateUpdated);
+	   }
+	 }
+	 gadgets.util.registerOnLoadHandler(init);
+
+	 </script>
+	 
+	  ]]> 
+
+  </Content>
+</Module>
