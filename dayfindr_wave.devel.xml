@@ -140,7 +140,6 @@
 		 messages[dateKey] = {};
 	       }
 	       messages[dateKey][participantId] = message;
-	       console.log(messages);
 	     }
 	   }
 	   
