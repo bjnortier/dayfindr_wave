@@ -123,7 +123,6 @@
 	     var participantId = keys[i];
 	     
 	     var daysAttending = JSON.parse(wave.getState().get(participantId));
-	     /*alert(participantId + ':' + wave.getState().get(participantId) + ':' + daysAttending);*/
 	     for (var j = 0; j < daysAttending.length; ++j) {
 	       var date = {};
 	       date.year = daysAttending[j].year;
@@ -141,6 +140,7 @@
 		 messages[dateKey] = {};
 	       }
 	       messages[dateKey][participantId] = message;
+	       console.log(messages);
 	     }
 	   }
 	   
