@@ -182,17 +182,17 @@
 		 var dateKey = JSON.stringify(dayStruct);
 
 		 if (reverseLookup[dateKey] != undefined) {
-		   var attendees = reverseLookup[dateKey];
-		   var messages = messages[dateKey];
+		   var attendeesForDay = reverseLookup[dateKey] || [];
+		   var messagesForDay = messages[dateKey] || [];
 
-		   var numberOfAttendees = attendees.length;
+		   var numberOfAttendees = attendeesForDay.length;
 		   var numberOfColumns =  Math.ceil(Math.sqrt(numberOfAttendees));
 
 		   /* Render the profile picture grid */
 		   calHtml += '<table class="participantGrid"><tr>';
 		   for (var a = 0; a < numberOfAttendees; ++a) {
 		     calHtml += '<td>';
-		     var participant = wave.getParticipantById(attendees[a]);
+		     var participant = wave.getParticipantById(attendeesForDay[a]);
 		     var thumbnailURL = participant.getThumbnailUrl();
 		     calHtml += '<img src="' + thumbnailURL + '" title="' + participant.getDisplayName() + '" + alt="' + participantId + '" width="27px" height="27px" onload="gadgets.window.adjustHeight();"/>';
 		     calHtml += '</td>';
@@ -206,7 +206,7 @@
 
 		   /* Render the messages */
 		   calHtml += '<div>';
-		   for (var i = 0; i < messages.length; ++i) {
+		   for (var i = 0; i < messagesForDay.length; ++i) {
 		     calHtml += '<span>';
 		     calHtml += messages[i].replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");;
 		     calHtml += '</span>';
