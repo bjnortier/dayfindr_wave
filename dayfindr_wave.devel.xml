@@ -209,7 +209,7 @@
 		     if (participantId == viewerId) {
 		       var id = participantId + '_comment_form';
 		       calHtml += '<form id=' + id + 'action="" method=""><input type="text"/><input type="submit" value="Ok"/></form>';
-		       $(id).submit(function() {
+		       $('#' + id).submit(function() {
 			   alert('Handler for .submit() called.');
 			   return false;
 			 });
