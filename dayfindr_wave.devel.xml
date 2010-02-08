@@ -210,7 +210,7 @@
 		     if (participantId == viewerId) {
 		       var bubbleId = '' + year + '_' + month + '_' + day + '_buddle';
 		       var formId = '' + year + '_' + month + '_' + day + '_comment_form';
-		       var onclick = "addComment('" + id + "'," + year + ',' + month + ',' + day + ')';
+		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
 		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '"/>';
 		       calHtml += '<form id="' + formId + '" action="" method=""><input type="text" name="comment"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
