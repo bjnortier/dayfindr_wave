@@ -7,9 +7,60 @@
   <Content type="html">
     <![CDATA[ 
 
+<style  TYPE="text/css">
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8"/> 
 
-<link rel="stylesheet" href="http://github.com/bjnortier/dayfindr_wave/raw/master/style.css" type="text/css" media="screen" charset="utf-8"/> 
+div.dayfindr_gadget_container {
+text-align: center;
+}
 
+
+div.dayfindr_month h2 {
+font-weight: bold;
+font-size: 1.2em;
+}
+
+table.dayfindr_month {
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 1em;
+text-align: center;
+padding: 5px;
+border-spacing: 0px;
+border: solid thin black;
+border-collapse: collapse;
+}
+
+table.dayfindr_month td {
+padding: 5px;
+border: solid thin grey;
+text-align: center;
+}
+
+div.dayfindr_gadget_container table.participantGrid {
+border-spacing: 0px;
+border-collapse: collapse;
+margin: 0px;
+padding: 0px;
+}
+
+table.participantGrid td {
+border: none;
+margin: 0px;
+padding: 0px;
+}
+
+table.dayfindr_month th {
+background-color: #006;
+font-weight: normal;
+color: white;
+}
+
+div.footer {
+font-size: 0.8em;
+}
+
+</style>
 <div id="content_div"></div>
 <script type="text/javascript">
 
