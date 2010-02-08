@@ -217,6 +217,7 @@
 		       var onBubble = "showCommentForm('" + formId + "')";
 		       
 		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '" onclick="' + onBubble + '" />';
+		       calHtml += '<a href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />...</a>';
 		       calHtml += '<form class="commentform" id="' + formId + '" action="" method=""><input type="text" name="comment" value="' + message + '"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
 		     }
