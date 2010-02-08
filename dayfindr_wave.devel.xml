@@ -197,7 +197,7 @@
 		     calHtml += '<img src="' + thumbnailURL + '" title="' + participant.getDisplayName() + '" + alt="' + participantId + '" width="27px" height="27px" onload="gadgets.window.adjustHeight();"/>';
 
 		     
-		     calhtml += '<form action="" method=""><input type="text"/><input type="submit" value="Ok"/></form>'
+		     calHtml += '<form action="" method=""><input type="text"/><input type="submit" value="Ok"/></form>'
 		     calHtml += '</td>';
 
 		     // Break it up to a sqrt(n) x sqrt(n) grid of images
