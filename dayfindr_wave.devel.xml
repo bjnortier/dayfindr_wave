@@ -211,7 +211,7 @@
 		     }
 
 		     if (message != "") {
-		       calHtml += '<span class="comment">' + message + '</span>';
+		       calHtml += '<span class="comment">' + message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); + '</span>';
 		     }
 
 		     if (participantId == viewerId) {
