@@ -200,11 +200,13 @@
 
 		     calHtml += '<img src="' + thumbnailURL + '" title="' + participant.getDisplayName() + '" + alt="' + participantId + '" width="27px" height="27px" onload="gadgets.window.adjustHeight();"/>';
 
+		     var message = "";
 		     if (messagesForDay[dateKey] != undefined
 			 &&
 			 messagesForDay[dateKey][participantId] != undefined) {
 		       
-		       calHtml += '<span class="comment">' + messagesForDay[dateKey][participantId] + '</span>';
+		       message = messagesForDay[dateKey][participantId];
+		       calHtml += '<span class="comment">' + message + '</span>';
 		     }
 
 		     if (participantId == viewerId) {
@@ -213,10 +215,8 @@
 		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
 		       var onBubble = "showCommentForm('" + formId + "')";
 		       
-		       var commentText = messagesForDay[dateKey] || messagesForDay[dateKey][participantId] || "";
-		       
 		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '" onclick="' + onBubble + '" />';
-		       calHtml += '<form class="commentform" id="' + formId + '" action="" method=""><input type="text" name="comment" value="' + commentText + '"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
+		       calHtml += '<form class="commentform" id="' + formId + '" action="" method=""><input type="text" name="comment" value="' + message + '"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
 		     }
 		     
