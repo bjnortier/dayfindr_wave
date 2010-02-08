@@ -197,6 +197,7 @@
 		     var participantId = attendeesForDay[a];
 		     var participant = wave.getParticipantById(participantId);
 		     var thumbnailURL = participant.getThumbnailUrl();
+
 		     calHtml += '<img src="' + thumbnailURL + '" title="' + participant.getDisplayName() + '" + alt="' + participantId + '" width="27px" height="27px" onload="gadgets.window.adjustHeight();"/>';
 
 		     if (messagesForDay[dateKey] != undefined
@@ -207,12 +208,10 @@
 		     }
 
 		     if (participantId == viewerId) {
+		       var onclick = 'addComment(' + year + ',' + month + ',' + day + ')';
 		       var id = '' + year + '_' + month + '_' + '_' + day + '_comment_form';
-		       calHtml += '<form id=' + id + 'action="" method=""><input type="text"/><input type="button" value="Ok"/></form>';
-		       $('#' + id).submit(function() {
-			   alert('Handler for .submit() called.');
-			   return false;
-			 });
+		       calHtml += '<form id=' + id + 'action="" method=""><input type="text"/><input type="button" onlick="' + onlick + '" value="Ok"/></form>';
+	
 		     }
 		     
 		   }
@@ -270,7 +269,7 @@
 	 
 	 var div = document.getElementById('content_div');
 
-	 function addComment(formId, year, month, day) {
+	 function addComment(year, month, day) {
 	  
 	 }
 
