@@ -208,9 +208,9 @@
 		     }
 
 		     if (participantId == viewerId) {
-		       var onclick = 'addComment(' + year + ',' + month + ',' + day + ')';
 		       var id = '' + year + '_' + month + '_' + '_' + day + '_comment_form';
-		       calHtml += '<form id=' + id + 'action="" method=""><input type="text"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
+		       var onclick = 'addComment(' + id + ',' + year + ',' + month + ',' + day + ')';
+		       calHtml += '<form id=' + id + 'action="" method=""><input type="text" name="comment"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
 		     }
 		     
@@ -269,8 +269,11 @@
 	 
 	 var div = document.getElementById('content_div');
 
-	 function addComment(year, month, day) {
-	  
+	 function addComment(formId, year, month, day) {
+	   
+	   var comment = $('#' + formId).find('input[name=authorName]')[0].value;
+	   alert(comment);
+
 	 }
 
 	 function dayClicked(year, month, day) {
