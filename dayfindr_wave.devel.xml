@@ -262,9 +262,6 @@
 	 
 	 var div = document.getElementById('content_div');
 
-	 function toggleMessageBox(id) {
-	   $(id).
-	 }
 
 	 function dayClicked(year, month, day) {
 
