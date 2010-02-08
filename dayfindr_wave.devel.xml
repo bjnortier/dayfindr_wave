@@ -214,6 +214,9 @@
 		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '"/>';
 		       calHtml += '<form id="' + formId + '" action="" method=""><input type="text" name="comment"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
+		       $('#' + buttonId).click(function() {
+			   $('#' + formId).show();
+			 });
 		       $('#' + formId).hide();
 		     }
 		     
