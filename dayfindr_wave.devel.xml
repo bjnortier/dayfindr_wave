@@ -210,20 +210,19 @@
 		       
 		     }
 
+		     if (message != "") {
+		       calHtml += '<span class="comment">' + message + '</span>';
+		     }
+
 		     if (participantId == viewerId) {
 		       var bubbleId = '' + year + '_' + month + '_' + day + '_buddle';
 		       var formId = '' + year + '_' + month + '_' + day + '_comment_form';
 		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
 		       var onBubble = "showCommentForm('" + formId + "')";
 		       
-		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '" onclick="' + onBubble + '" />';
 		       calHtml += '<a href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />...</a>';
 		       calHtml += '<form class="commentform" id="' + formId + '" action="" method=""><input type="text" name="comment" value="' + message + '"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
-		     }
-
-		     if (message != "") {
-		       calHtml += '<span class="comment">' + message + '</span>';
 		     }
 		     calHtml += '</div>';
 		   }
