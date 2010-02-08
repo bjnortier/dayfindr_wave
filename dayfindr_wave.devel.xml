@@ -211,8 +211,9 @@
 		       var bubbleId = '' + year + '_' + month + '_' + day + '_buddle';
 		       var formId = '' + year + '_' + month + '_' + day + '_comment_form';
 		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
+		       var onBubble = "showCommentForm('" + formId + "')";
 		       
-		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '" onclick="toggleFn()" />';
+		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '" onclick="' + onBubble + '" />';
 		       calHtml += '<form class="commentform" id="' + formId + '" action="" method=""><input type="text" name="comment"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
 		     }
@@ -271,6 +272,10 @@
 	 }
 	 
 	 var div = document.getElementById('content_div');
+
+	 function showCommentForm(formId) {
+	   $('#' + formId).show();
+	 }
 
 	 function addComment(formId, year, month, day) {
 
