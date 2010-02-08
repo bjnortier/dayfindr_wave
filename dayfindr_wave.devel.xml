@@ -271,9 +271,14 @@
 
 	 function addComment(formId, year, month, day) {
 	   
-	   var comment = $('#' + formId).find('input[name=authorName]')[0].value;
-	   alert(comment);
-
+	   var form = document.getElementById (formId);
+	   var inputs = radios.getElementsByTagName ('input');
+	   if (inputs) {
+	     for (var i = 0; i < inputs.length; ++i) {
+	       if (inputs[i].name == 'comment') {
+		 alert(inputs[i].value);
+	     }
+	   }
 	 }
 
 	 function dayClicked(year, month, day) {
