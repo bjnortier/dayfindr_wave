@@ -209,7 +209,7 @@
 
 		     if (participantId == viewerId) {
 		       var id = '' + year + '_' + month + '_' + day + '_comment_form';
-		       var onclick = 'addComment("' + id + '",' + year + ',' + month + ',' + day + ')';
+		       var onclick = "addComment('" + id + "'," + year + ',' + month + ',' + day + ')';
 		       calHtml += '<form id=' + id + 'action="" method=""><input type="text" name="comment"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
 		     }
