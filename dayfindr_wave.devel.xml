@@ -68,7 +68,7 @@
 	 </style>
 	 <div id="content_div"></div>
 	 <script type="text/javascript">
-
+	 
 	 var months = [];
 	 months[0] = "January";
 	 months[1] = "February";
@@ -109,25 +109,43 @@
 	   var calHtml = '';
 
 	   var reverseLookup = {};
+	   var messages = {};
 	   var keys = wave.getState().getKeys();
+
+	   /*
+	    * Transform the map of participants to attending days
+	    * to a map of days to attendees
+	    */
 	   for (var i = 0; i < keys.length; ++i) {
 	     var participantId = keys[i];
 	     
 	     var daysAttending = JSON.parse(wave.getState().get(participantId));
 	     /*alert(participantId + ':' + wave.getState().get(participantId) + ':' + daysAttending);*/
 	     for (var j = 0; j < daysAttending.length; ++j) {
-	       dayAttending = JSON.stringify(daysAttending[j]);
-	       if (reverseLookup[dayAttending] == undefined) {
-		 reverseLookup[dayAttending] = [];
+	       var date = {};
+	       date.year = daysAttending[j].year;
+	       date.month = daysAttending[j].month;
+	       date.day = daysAttending[j].day;
+	       message = daysAttending[j].message;
+	       
+	       var dateKey = JSON.stringify(date);
+	       if (reverseLookup[dateKey] == undefined) {
+		 reverseLookup[dateKey] = [];
 	       }
-	       reverseLookup[dayAttending].push(participantId);
+	       reverseLookup[dateKey].push(participantId);
+	       
+	       if (message != undefined) {
+		 if (messages[dateKey] == undefined) {
+		   messages[dateKey] = [];
+		 }
+		 messages[dateKey].push(message);
+	       }
 	     }
 	   }
 	   
 	   calHtml += '<table class="dayfindr_month">';
 	   calHtml += '<tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>';
 	   for (var week = 0; (week < 6) && (numberOfDaysLeft > 0); ++week) {
-
 
 	     calHtml += '<tr>';
 	     for (var dayOfWeek = 0; dayOfWeek < 7; ++dayOfWeek) {
@@ -163,16 +181,17 @@
 		 dayStruct.year = year;
 		 dayStruct.month = month;
 		 dayStruct.day = day;
-		 dayKey = JSON.stringify(dayStruct);
-		 
+		 var dateKey = JSON.stringify(dayStruct);
 
-		 if (reverseLookup[dayKey] != undefined) {
-		   var attendees = reverseLookup[dayKey];
+		 if (reverseLookup[dateKey] != undefined) {
+		   var attendees = reverseLookup[dateKey];
+		   var messages = messages[dateKey];
+
 		   var numberOfAttendees = attendees.length;
 		   var numberOfColumns =  Math.ceil(Math.sqrt(numberOfAttendees));
 
+		   /* Render the profile picture grid */
 		   calHtml += '<table class="participantGrid"><tr>';
-
 		   for (var a = 0; a < numberOfAttendees; ++a) {
 		     calHtml += '<td>';
 		     var participant = wave.getParticipantById(attendees[a]);
@@ -184,20 +203,22 @@
  		     if ((a + 1) % numberOfColumns == 0) {
 		       calHtml += '</tr><tr>';
 		     }
-
-		     
 		   }
 		   calHtml += '</tr></table>';
 
-
+		   /* Render the messages */
+		   calHtml += '<div>';
+		   for (var i = 0; i < messages.length; ++i) {
+		     calHtml += '<span>';
+		     calHtml += messages[i];
+		     calHtml += '</span>';
+		   }
+		   calHtml += '</div>';
+		     
 		 }
-
-
 		 calHtml += '</td>';
-
 		 --numberOfDaysLeft;
 	       }
-   
 	     }
 	     calHtml += '</tr>';
 	   }
@@ -243,13 +264,15 @@
 	   attend.year = year;
 	   attend.month = month;
 	   attend.day = day;
+	   attend.message = 'hello!';
 	   
 	   var viewerId = wave.getViewer().getId();
 	   var daysJSON = wave.getState().get(viewerId, '[]');
 	   var currentDays = JSON.parse(daysJSON);
-	   var newDays = new Array();
+	   var newDays = [];
 	   var found = false;
 	   var copyIndex = 0;
+	   var found = false;
 	   for(var i = 0; i < currentDays.length; ++i) {
 	     currentDay = currentDays[i];
 	     if (currentDay.day == attend.day
@@ -257,14 +280,17 @@
 		 currentDay.month == attend.month
 		 &&
 		 currentDay.year == attend.year) {
+
+	       found = true;
 	     } else {
 	       newDays[copyIndex] = currentDay;
 	       ++copyIndex;
 	     }
 	   }
+
 	   // If the result is the same length as the original,
 	   // the current day was not found so it must be appended
-	   if (copyIndex == currentDays.length) {
+	   if (!found) {
 	     newDays[copyIndex] = attend;
 	   }
 		   
