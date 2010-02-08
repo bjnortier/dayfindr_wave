@@ -211,14 +211,19 @@
 		       var bubbleId = '' + year + '_' + month + '_' + day + '_buddle';
 		       var formId = '' + year + '_' + month + '_' + day + '_comment_form';
 		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
-		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '"/>';
+		       
+		       var hidden = true;
+		       var toggleFn = new function() {
+			 if (hidden) {
+			   $('#' + formId).show();
+			 } else {
+			   $('#' + formId).hide();
+			 }
+		       }
+
+		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '" onclick=toggleFn()/>';
 		       calHtml += '<form id="' + formId + '" action="" method=""><input type="text" name="comment"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
-		       $('#' + bubbleId).click(function() {
-			   alert('!');
-			   $('#' + formId).show();
-			 });
-		       $('#' + formId).hide();
 		     }
 		     
 		   }
