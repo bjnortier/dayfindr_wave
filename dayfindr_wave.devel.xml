@@ -134,12 +134,10 @@
 	       }
 	       reverseLookup[dateKey].push(participantId);
 	       
-	       if (message != undefined) {
-		 if (messages[dateKey] == undefined) {
-		   messages[dateKey] = [];
-		 }
-		 messages[dateKey].push(message);
+	       if (messages[dateKey] == undefined) {
+		 messages[dateKey] = [];
 	       }
+	       messages[dateKey].push(message);
 	     }
 	   }
 	   
@@ -210,7 +208,7 @@
 		   calHtml += '<div>';
 		   for (var i = 0; i < messages.length; ++i) {
 		     calHtml += '<span>';
-		     calHtml += messages[i];
+		     calHtml += messages[i].replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");;
 		     calHtml += '</span>';
 		   }
 		   calHtml += '</div>';
@@ -264,7 +262,7 @@
 	   attend.year = year;
 	   attend.month = month;
 	   attend.day = day;
-	   attend.message = 'hello!';
+	   attend.message = 'hello!<div></div>';
 	   
 	   var viewerId = wave.getViewer().getId();
 	   var daysJSON = wave.getState().get(viewerId, '[]');
