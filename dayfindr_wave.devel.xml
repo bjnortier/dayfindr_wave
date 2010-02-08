@@ -202,6 +202,7 @@
 			 messagesForDay[dateKey][participantId] != undefined) {
 		       
 		       calHtml += '<span class="comment">' + messagesForDay[dateKey][participantId] + '</span>';
+		     }
 
 		     if (participantId == viewerId) {
 		       calHtml += '<form action="" method=""><input type="text"/><input type="submit" value="Ok"/></form>';
