@@ -230,7 +230,7 @@
 	   }
 
 	   calendarHtml += '<div class="footer">Gadget URL: http://github.com/bjnortier/dayfindr_wave/raw/master/dayfindr_wave.xml</div>';
-	   calendarHtml += '<div class="footer">v0.5 &copy;2009 <a href="http://www.dayfindr.com">dayfindr.com</a></div>';
+	   calendarHtml += '<div class="footer">v0.6 &copy;2009 <a href="http://www.dayfindr.com">dayfindr.com</a></div>';
 	   calendarHtml += '</div>';
 	   return calendarHtml;
 	 }
