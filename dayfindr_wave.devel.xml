@@ -190,13 +190,14 @@
 		   var numberOfAttendees = attendeesForDay.length;
 
 		   /* Render the profile picture grid */
-		   calHtml += '<div>';
+
 		   for (var a = 0; a < numberOfAttendees; ++a) {
 
 		     var participantId = attendeesForDay[a];
 		     var participant = wave.getParticipantById(participantId);
 		     var thumbnailURL = participant.getThumbnailUrl();
 
+		     calHtml += '<div>';
 		     calHtml += '<img src="' + thumbnailURL + '" title="' + participant.getDisplayName() + '" + alt="' + participantId + '" width="27px" height="27px" onload="gadgets.window.adjustHeight();"/>';
 
 		     var message = "";
@@ -219,9 +220,8 @@
 		     if (message != "") {
 		       calHtml += '<span class="comment">' + message + '</span>';
 		     }
-		     
+		     calHtml += '</div>';
 		   }
-		   calHtml += '</div>';
 
 		 }
 		 calHtml += '</td>';
@@ -325,7 +325,6 @@
 	   attend.year = year;
 	   attend.month = month;
 	   attend.day = day;
-	   attend.message = 'hello!<div></div>';
 	   
 	   var viewerId = wave.getViewer().getId();
 	   var daysJSON = wave.getState().get(viewerId, '[]');
