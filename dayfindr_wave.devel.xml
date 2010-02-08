@@ -213,8 +213,10 @@
 		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
 		       var onBubble = "showCommentForm('" + formId + "')";
 		       
+		       var commentText = messagesForDay[dateKey][participantId] || "";
+		       
 		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '" onclick="' + onBubble + '" />';
-		       calHtml += '<form class="commentform" id="' + formId + '" action="" method=""><input type="text" name="comment"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
+		       calHtml += '<form class="commentform" id="' + formId + '" action="" method=""><input type="text" name="comment" value="' + commentText + '"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
 		     }
 		     
@@ -286,6 +288,41 @@
 	     for (var i = 0; i < inputs.length; ++i) {
 	       if (inputs[i].name == 'comment') {
 		 var comment = inputs[i].value;
+
+		 var attend = {};
+		 attend.year = year;
+		 attend.month = month;
+		 attend.day = day;
+	   
+		 var viewerId = wave.getViewer().getId();
+		 var daysJSON = wave.getState().get(viewerId, '[]');
+		 var currentDays = JSON.parse(daysJSON);
+		 var newDays = [];
+		 var found = false;
+		 var copyIndex = 0;
+		 var found = false;
+		 for(var i = 0; i < currentDays.length; ++i) {
+		   currentDay = currentDays[i];
+		   if (currentDay.day == attend.day
+		       &&
+		       currentDay.month == attend.month
+		       &&
+		       currentDay.year == attend.year) {
+
+		     currentDay.message = comment;
+		     newDays[copyIndex] = currentDay;
+		   } else {
+		     newDays[copyIndex] = currentDay;
+		     ++copyIndex;
+		   }
+		 }
+
+		   
+		 var checked = wave.getState().get(viewerId);
+		 var delta = {};
+		 delta[viewerId] = JSON.stringify(newDays);
+		 wave.getState().submitDelta(delta);
+		 
 	       }
 	     }
 	   }
