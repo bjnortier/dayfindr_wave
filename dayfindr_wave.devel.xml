@@ -208,7 +208,7 @@
 		   calHtml += '<div>';
 		   for (var i = 0; i < messagesForDay.length; ++i) {
 		     calHtml += '<span>';
-		     calHtml += messages[i].replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");;
+		     calHtml += messagesForDay[i].replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");;
 		     calHtml += '</span>';
 		   }
 		   calHtml += '</div>';
