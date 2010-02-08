@@ -213,7 +213,7 @@
 		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
 		       var onBubble = "showCommentForm('" + formId + "')";
 		       
-		       var commentText = messagesForDay[dateKey][participantId] || "";
+		       var commentText = messagesForDay[dateKey] || messagesForDay[dateKey][participantId] || "";
 		       
 		       calHtml += '<img src="http://github.com/bjnortier/dayfindr_wave/raw/master/comment.png" id="' + bubbleId + '" onclick="' + onBubble + '" />';
 		       calHtml += '<form class="commentform" id="' + formId + '" action="" method=""><input type="text" name="comment" value="' + commentText + '"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
