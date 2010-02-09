@@ -272,52 +272,6 @@
 	   $('#' + formId).show();
 	 }
 
-	 function addComment(formId, year, month, day) {
-
-	   $('#' + formId).hide();
-	   var form = document.getElementById (formId);
-	   var inputs = form.getElementsByTagName ('input');
-	   if (inputs) {
-	     for (var i = 0; i < inputs.length; ++i) {
-	       if (inputs[i].name == 'comment') {
-		 var comment = inputs[i].value;
-
-		 var attend = {};
-		 attend.year = year;
-		 attend.month = month;
-		 attend.day = day;
-	   
-		 var viewerId = wave.getViewer().getId();
-		 var daysJSON = wave.getState().get(viewerId, '[]');
-		 var currentDays = JSON.parse(daysJSON);
-		 var newDays = [];
-		 var found = false;
-		 var copyIndex = 0;
-		 var found = false;
-		 for(var i = 0; i < currentDays.length; ++i) {
-		   currentDay = currentDays[i];
-		   if (currentDay.day == attend.day
-		       &&
-		       currentDay.month == attend.month
-		       &&
-		       currentDay.year == attend.year) {
-
-		     currentDay.message = comment;
-		   } 
-		   newDays[copyIndex] = currentDay;
-		   ++copyIndex;
-		 }
-
-		 var checked = wave.getState().get(viewerId);
-		 var delta = {};
-		 delta[viewerId] = JSON.stringify(newDays);
-		 wave.getState().submitDelta(delta);
-		 
-	       }
-	     }
-	   }
-	 }
-
 	 function createDateStruct(year, month, day) {
 	   var date = {};
 	   date.year = year;
@@ -328,15 +282,6 @@
 
 	 function dateStructsEqual(left, right) {
 	   return left.year == right.year && left.month == right.month && left.day == right.day;
-	 }
-
-	 function dayClicked(year, month, day) {
-	   /*var shouldCopyFn = function(date) {
-	     var clickedDate = createDateStruct(year, month, day);
-	     return !dateStructsEqual(date, clickedDate);
-	     }*/
-	   
-	   createDelta(year, month, day);
 	 }
 
 	 function containsDate(array, date) {
@@ -358,17 +303,41 @@
 	   return newArray;
 	 }
 
-	 function createDelta(year, month, day) {
+	 function updateMessage(array, date, message) {
+	   for (var i = 0; i < array.length; i++) {
+	     if (dateStructsEqual(array[i], date)) {
+	       array[i].message = message;
+	     }
+	   }
+	 }
+
+	 function addComment(formId, year, month, day) {
+
+	   $('#' + formId).hide();
+	   var form = document.getElementById (formId);
+	   var comment = $(form).find('input[name=comment]')[0].value;
 
 	   var clickedDate = createDateStruct(year, month, day);
 	   
 	   var viewerId = wave.getViewer().getId();
 	   var daysJSON = wave.getState().get(viewerId, '[]');
 	   var attendingDays = JSON.parse(daysJSON);
-	   var newDays = [];
-	   var found = false;
-	   var copyIndex = 0;
-	   var found = false;
+
+	   updateMessage(attendingDays, clickedDate, message);
+	   
+	   var delta = {};
+	   delta[viewerId] = JSON.stringify(newDays);
+	   wave.getState().submitDelta(delta);
+	   
+	 }
+
+	 function dayClicked(year, month, day) {
+	   
+	   var clickedDate = createDateStruct(year, month, day);
+	   
+	   var viewerId = wave.getViewer().getId();
+	   var daysJSON = wave.getState().get(viewerId, '[]');
+	   var attendingDays = JSON.parse(daysJSON);
 
 	   if (containsDate(attendingDays, clickedDate)) {
 	     attendingDays = removeDate(attendingDays, clickedDate);
@@ -376,13 +345,13 @@
 	     attendingDays.push(clickedDate);
 	   }
 		   
-	   var checked = wave.getState().get(viewerId);
 	   var delta = {};
 	   delta[viewerId] = JSON.stringify(attendingDays);
 	   wave.getState().submitDelta(delta);
-	   
 	 }
-	       
+
+
+
 	 function stateUpdated() {
 	   div.innerHTML = createCalendarHTML();
 	   $('.commentform').hide();
