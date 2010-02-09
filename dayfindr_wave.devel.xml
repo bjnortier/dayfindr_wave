@@ -339,6 +339,25 @@
 	   createDelta(year, month, day);
 	 }
 
+	 function containsDay(array, date) {
+	   for (var i = 0; i < array.length; i++) {
+	     if (dateStructsEqual(array[i], date)) {
+	       return true;
+	     }
+	   }
+	   return false;
+	 }
+
+	 function removeDate(array, date) {
+	   var newArray = [];
+	   for (var i = 0; i < this.length; i++) {
+	     if (!dateStructsEqual(array[i], date)) {
+	       newArray.push(this[i]);
+	     }
+	   }
+	   return newArray;
+	 }
+
 	 function createDelta(year, month, day) {
 
 	   var clickedDate = createDateStruct(year, month, day);
@@ -351,27 +370,8 @@
 	   var copyIndex = 0;
 	   var found = false;
 
-	   if (Array.prototype.containsDay==null) Array.prototype.containsDay = function(date) {
-	     for (var i = 0; i < this.length; i++) {
-	       if (dateStructsEqual(this[i], date)) {
-		 return true;
-	       }
-	     }
-	     return false;
-	   }
-
-	   /*Array.prototype.remove = function(date) {
-	     var newArray = [];
-	     for (var i = 0; i < this.length; i++) {
-	       if (!dateStructsEqual(this[i], date)) {
-		 newArray.push(this[i]);
-	       }
-	     }
-	     return newArray;
-	   }*/
-	   
-	   if (currentDays.containsDay(clickedDate)) {
-	     currentDays = currentDays.remove(clickedDate);
+	   if (containsDay(currentDays, clickedDate)) {
+	     currentDays = removeDay(currentDays, clickedDate);
 	   } else {
 	     currentDays.push(clickedDate);
 	   }
