@@ -44,6 +44,10 @@
     padding: 0px;
   }
 
+  div.dayfindr_gadget_container table.participantGrid {
+    padding: 5px;
+  }
+
   table.participantGrid td {
     border: none;
     margin: 0px;
