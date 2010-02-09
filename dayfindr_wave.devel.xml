@@ -212,9 +212,9 @@
 		       var onBubble = "toggleCommentForm('" + containerId + "')";
 		       
 		       calHtml += '<a class="toggle-form" href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
-		       calHtml += '<span id="' + containerId + '" class="comment-container">';
+		       calHtml += '<p id="' + containerId + '" class="comment-container">';
 		       calHtml += '<input id="' + inputId +'" class="comment" type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/>';
-		       calHtml += '</span>';
+		       calHtml += '</p>';
 	
 		     }
 		     calHtml += '</div>';
