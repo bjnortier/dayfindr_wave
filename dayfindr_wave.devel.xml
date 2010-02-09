@@ -331,6 +331,15 @@
 	 }
 
 	 function dayClicked(year, month, day) {
+	   var shouldCopyFn = function(date) {
+	     var clickedDate = createDateStruct(year, month, day);
+	     return !dateStructsEqual(date, clickedDate);
+	   }
+	   
+	   createDelta(year, month, day, shouldCopyFn);
+	 }
+
+	 function createDelta(year, month, day, shouldCopyFn) {
 
 	   var clickedDate = createDateStruct(year, month, day);
 	   
@@ -347,11 +356,11 @@
 					       currentDays[i].month,
 					       currentDays[i].day);
 	     
-	     if (dateStructsEqual(currentDay, clickedDate)) {
-	       found = true;
-	     } else {
+	     if (shouldCopyFn()) {
 	       newDays[copyIndex] = currentDay;
 	       ++copyIndex;
+	     } else {
+	       found = true;
 	     }
 	   }
 
@@ -365,9 +374,7 @@
 	   var delta = {};
 	   delta[viewerId] = JSON.stringify(newDays);
 	   wave.getState().submitDelta(delta);
-	 }
-
-	 function createDelta(year, month, day, clicked, commented) {
+	   
 	 }
 	       
 	 function stateUpdated() {
