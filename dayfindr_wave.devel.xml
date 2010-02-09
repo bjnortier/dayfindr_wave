@@ -39,7 +39,7 @@
 	   padding: 2px;
 	 }
 	 
-	 table.dayfindr_month toggle-form {
+	 table.dayfindr_month .toggle-form {
 	   font-size: 0.5em;
 	 }
 
