@@ -208,7 +208,7 @@
 		       var bubbleId = '' + year + '_' + month + '_' + day + '_buddle';
 		       var formId = '' + year + '_' + month + '_' + day + '_comment_form';
 		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
-		       var onBubble = "showCommentForm('" + formId + "')";
+		       var onBubble = "toggleCommentForm('" + formId + "')";
 		       
 		       calHtml += '<a class="toggle-form" href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
 		       calHtml += '<form class="commentform" id="' + formId + '"><input type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
