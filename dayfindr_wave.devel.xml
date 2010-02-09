@@ -263,8 +263,8 @@
 	 
 	 var div = document.getElementById('content_div');
 
-	 function toggleCommentForm(formId) {
-	   var form = $('#' + formId);
+	 function toggleCommentForm(containerId) {
+	   var form = $('#' + containerId);
 	   if (form.is(":visible")) {
 	     form.hide();
 	   } else {
@@ -353,7 +353,7 @@
 
 	 function stateUpdated() {
 	   div.innerHTML = createCalendarHTML();
-	   $('.comment-container').hide();
+	   /*$('.comment-container').hide();*/
 	   gadgets.window.adjustHeight();
 	 }
  
