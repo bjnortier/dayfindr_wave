@@ -323,10 +323,12 @@
 	   date.year = year;
 	   date.month = month;
 	   date.day = day;
+	   return date;
 	 }
 
 	 function dateStructsEqual(left, right) {
-	   return left.year == right.year &&
+	   return 
+	     left.year == right.year &&
 	     left.month == right.month &&
 	     left.day == right.day;
 	 }
