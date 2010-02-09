@@ -125,7 +125,6 @@
 	     var participantId = keys[i];
 	     
 	     var daysAttending = JSON.parse(wave.getState().get(participantId));
-	     console.log(wave.getState().get(participantId));
 	     for (var j = 0; j < daysAttending.length; ++j) {
 	       var date = {};
 	       date.year = daysAttending[j].year;
@@ -361,7 +360,6 @@
 
 	 function createDelta(year, month, day) {
 
-	   console.log(clickedDate);
 	   var clickedDate = createDateStruct(year, month, day);
 	   
 	   var viewerId = wave.getViewer().getId();
@@ -374,7 +372,6 @@
 
 	   if (containsDate(attendingDays, clickedDate)) {
 	     attendingDays = removeDate(attendingDays, clickedDate);
-	     alert(console.log(JSON.stringify(attendingDays)));
 	   } else {
 	     attendingDays.push(clickedDate);
 	   }
