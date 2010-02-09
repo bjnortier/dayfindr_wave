@@ -260,8 +260,13 @@
 	 
 	 var div = document.getElementById('content_div');
 
-	 function showCommentForm(formId) {
-	   $('#' + formId).show();
+	 function toggleCommentForm(formId) {
+	   var form = $('#' + formId);
+	   if (form.is(":visible")) {
+	     form.hide();
+	   } else {
+	     form.show();
+	   }
 	 }
 
 	 function createDateStruct(year, month, day) {
