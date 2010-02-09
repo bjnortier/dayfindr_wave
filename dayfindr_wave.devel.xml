@@ -36,25 +36,9 @@
   text-align: center;
   }
 
-
-  div.dayfindr_gadget_container table.participantGrid {
-    border-spacing: 0px;
-    border-collapse: collapse;
-    margin: 0px;
-    padding: 0px;
+  table.dayfindr_month td span {
+  padding: 5px;
   }
-
-  div.dayfindr_gadget_container table.participantGrid {
-    padding: 5px;
-  }
-
-  table.participantGrid td {
-    border: none;
-    margin: 0px;
-    padding: 0px;
-  }
-
-  
 
   table.dayfindr_month th {
   background-color: #006;
