@@ -211,7 +211,7 @@
 		       var onBubble = "toggleCommentForm('" + formId + "')";
 		       
 		       calHtml += '<a class="toggle-form" href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
-		       calHtml += '<form class="commentform" id="' + formId + '"><input type="text" name="comment" value="' + message + '" size="10"/><button onclick="' + onclick + '" value="Ok"/></form>';
+		       calHtml += '<form class="commentform" id="' + formId + '"><input class="comment" type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
 		     }
 		     calHtml += '</div>';
@@ -352,6 +352,7 @@
 	 function stateUpdated() {
 	   div.innerHTML = createCalendarHTML();
 	   $('.commentform').hide();
+	   $("input[name=comment]").keydown (function(event) {} );
 	   gadgets.window.adjustHeight();
 	 }
  
