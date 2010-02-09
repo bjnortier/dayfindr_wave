@@ -206,12 +206,12 @@
 
 		     if (participantId == viewerId) {
 		       var bubbleId = '' + year + '_' + month + '_' + day + '_buddle';
-		       var formId = '' + year + '_' + month + '_' + day + '_comment_form';
-		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
+		       var inputId = '' + year + '_' + month + '_' + day + '_comment_input';
+		       var onclick = "addComment('" + inputId + "'," + year + ',' + month + ',' + day + ')';
 		       var onBubble = "toggleCommentForm('" + formId + "')";
 		       
 		       calHtml += '<a class="toggle-form" href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
-		       calHtml += '<form class="commentform" id="' + formId + '"><input class="comment" type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
+		       calHtml += '<input id="' + inputId +'" class="comment" type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
 		     }
 		     calHtml += '</div>';
@@ -308,11 +308,10 @@
 	   }
 	 }
 
-	 function addComment(formId, year, month, day) {
+	 function addComment(inputId, year, month, day) {
 
-	   $('#' + formId).hide();
-	   var form = document.getElementById (formId);
-	   var comment = $(form).find('input[name=comment]')[0].value;
+	   /*$('#' + formId).hide();*/
+	   var comment = $(inputId)[0].value;
 
 	   var clickedDate = createDateStruct(year, month, day);
 	   
@@ -352,7 +351,6 @@
 	 function stateUpdated() {
 	   div.innerHTML = createCalendarHTML();
 	   $('.commentform').hide();
-	   $("input[name=comment]").keydown (function(event) {} );
 	   gadgets.window.adjustHeight();
 	 }
  
