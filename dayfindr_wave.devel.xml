@@ -326,7 +326,7 @@
 	   updateMessage(attendingDays, clickedDate, comment);
 	   
 	   var delta = {};
-	   delta[viewerId] = JSON.stringify(newDays);
+	   delta[viewerId] = JSON.stringify(attendingDays);
 	   wave.getState().submitDelta(delta);
 	   
 	 }
