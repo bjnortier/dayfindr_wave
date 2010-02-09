@@ -339,7 +339,7 @@
 	   createDelta(year, month, day);
 	 }
 
-	 function containsDay(array, date) {
+	 function containsDate(array, date) {
 	   for (var i = 0; i < array.length; i++) {
 	     if (dateStructsEqual(array[i], date)) {
 	       return true;
@@ -371,8 +371,8 @@
 	   var copyIndex = 0;
 	   var found = false;
 
-	   if (containsDay(currentDays, clickedDate)) {
-	     currentDays = removeDay(currentDays, clickedDate);
+	   if (containsDate(currentDays, clickedDate)) {
+	     currentDays = removeDate(currentDays, clickedDate);
 	   } else {
 	     currentDays.push(clickedDate);
 	   }
