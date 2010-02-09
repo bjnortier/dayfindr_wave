@@ -318,7 +318,7 @@
 	   }
 	 }
 
-	 function Date(year, month, day) {
+	 function DF_Date(year, month, day) {
 	   this.year = year;
 	   this.month = month;
 	   this.day = day;
@@ -332,7 +332,7 @@
 
 	 function dayClicked(year, month, day) {
 
-	   var clickedDate = new Date(year, month, day);
+	   var clickedDate = new DF_Date(year, month, day);
 	   
 	   var viewerId = wave.getViewer().getId();
 	   var daysJSON = wave.getState().get(viewerId, '[]');
@@ -343,7 +343,7 @@
 	   var found = false;
 	   for(var i = 0; i < currentDays.length; ++i) {
 	     
-	     var currentDay = new Date(currentDays[i].year,
+	     var currentDay = new DF_Date(currentDays[i].year,
 				       currentDays[i].month,
 				       currentDays[i].day);
 	     
