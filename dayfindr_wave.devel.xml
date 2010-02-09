@@ -351,6 +351,7 @@
 	 function removeDate(array, date) {
 	   var newArray = [];
 	   for (var i = 0; i < this.length; i++) {
+	     console(JSON.stringify(array[i]), JSON.stringify(date));
 	     if (!dateStructsEqual(array[i], date)) {
 	       newArray.push(this[i]);
 	     }
@@ -365,21 +366,21 @@
 	   
 	   var viewerId = wave.getViewer().getId();
 	   var daysJSON = wave.getState().get(viewerId, '[]');
-	   var currentDays = JSON.parse(daysJSON);
+	   var attendingDays = JSON.parse(daysJSON);
 	   var newDays = [];
 	   var found = false;
 	   var copyIndex = 0;
 	   var found = false;
 
-	   if (containsDate(currentDays, clickedDate)) {
-	     currentDays = removeDate(currentDays, clickedDate);
+	   if (containsDate(attendingDays, clickedDate)) {
+	     attendingDays = removeDate(attendingDays, clickedDate);
 	   } else {
-	     currentDays.push(clickedDate);
+	     attendingDays.push(clickedDate);
 	   }
 		   
 	   var checked = wave.getState().get(viewerId);
 	   var delta = {};
-	   delta[viewerId] = JSON.stringify(currentDays);
+	   delta[viewerId] = JSON.stringify(attendingDays);
 	   wave.getState().submitDelta(delta);
 	   
 	 }
