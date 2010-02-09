@@ -331,15 +331,15 @@
 	 }
 
 	 function dayClicked(year, month, day) {
-	   var shouldCopyFn = function(date) {
+	   /*var shouldCopyFn = function(date) {
 	     var clickedDate = createDateStruct(year, month, day);
 	     return !dateStructsEqual(date, clickedDate);
-	   }
+	     }*/
 	   
-	   createDelta(year, month, day, shouldCopyFn);
+	   createDelta(year, month, day);
 	 }
 
-	 function createDelta(year, month, day, shouldCopyFn) {
+	 function createDelta(year, month, day) {
 
 	   var clickedDate = createDateStruct(year, month, day);
 	   
@@ -350,24 +350,29 @@
 	   var found = false;
 	   var copyIndex = 0;
 	   var found = false;
-	   for(var i = 0; i < currentDays.length; ++i) {
-	     
-	     var currentDay = createDateStruct(currentDays[i].year,
-					       currentDays[i].month,
-					       currentDays[i].day);
-	     
-	     if (shouldCopyFn(currentDay)) {
-	       newDays[copyIndex] = currentDay;
-	       ++copyIndex;
-	     } else {
-	       found = true;
+
+	   Array.prototype.containsDay = function(date) {
+	     for (var i = 0; i < this.length; i++) {
+	       if (dateStructsEqual(this[i], date)) {
+		 return true;
+	       }
 	     }
 	   }
 
-	   // If the result is the same length as the original,
-	   // the current day was not found so it must be appended
-	   if (!found) {
-	     newDays[copyIndex] = clickedDate;
+	   Array.prototype.remove = function(date) {
+	     var newArray = [];
+	     for (var i = 0; i < this.length; i++) {
+	       if (!dateStructsEqual(this[i], date)) {
+		 newArray.push(this[i]);
+	       }
+	     }
+	     return newArray;
+	   }
+	   
+	   if (currentDays.containsDay(clickedDate)) {
+	     currentDays = currentDays.remove(clickedDate);
+	   } else {
+	     currentDays.push(clickedDate);
 	   }
 		   
 	   var checked = wave.getState().get(viewerId);
