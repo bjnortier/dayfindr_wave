@@ -350,7 +350,7 @@
 
 	 function removeDate(array, date) {
 	   var newArray = [];
-	   for (var i = 0; i < this.length; i++) {
+	   for (var i = 0; i < array.length; i++) {
 	     console(JSON.stringify(array[i]), JSON.stringify(date));
 	     if (!dateStructsEqual(array[i], date)) {
 	       newArray.push(this[i]);
