@@ -38,6 +38,11 @@
 	 table.dayfindr_month td span, table.dayfindr_month td a {
 	   padding: 2px;
 	 }
+
+	 table.dayfindr_month comment-container {
+	   margin: 0px;
+	   padding: 0px;
+	 }
 	 
 	 table.dayfindr_month .toggle-form {
 	   font-size: 0.7em;
