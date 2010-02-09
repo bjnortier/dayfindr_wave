@@ -351,15 +351,16 @@
 	   var copyIndex = 0;
 	   var found = false;
 
-	   /*Array.prototype.containsDay = function(date) {
+	   if (Array.prototype.containsDay==null) Array.prototype.containsDay = function(date) {
 	     for (var i = 0; i < this.length; i++) {
 	       if (dateStructsEqual(this[i], date)) {
 		 return true;
 	       }
 	     }
+	     return false;
 	   }
 
-	   Array.prototype.remove = function(date) {
+	   /*Array.prototype.remove = function(date) {
 	     var newArray = [];
 	     for (var i = 0; i < this.length; i++) {
 	       if (!dateStructsEqual(this[i], date)) {
