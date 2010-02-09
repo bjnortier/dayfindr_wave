@@ -327,10 +327,7 @@
 	 }
 
 	 function dateStructsEqual(left, right) {
-	   return 
-	     left.year == right.year &&
-	     left.month == right.month &&
-	     left.day == right.day;
+	   return left.year == right.year && left.month == right.month && left.day == right.day;
 	 }
 
 	 function dayClicked(year, month, day) {
