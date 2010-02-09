@@ -39,7 +39,7 @@
 	   padding: 2px;
 	 }
 
-	 table.dayfindr_month .comment-container {
+	 table.dayfindr_month .comment-container, table.dayfindr_month attendees {
 	   margin: 0px;
 	   padding: 0px;
 	 }
@@ -206,7 +206,7 @@
 		     }
 
 		     if (message != "") {
-		       calHtml += '<span class="comment">' + message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); + '</span>';
+		       calHtml += '<span class="comment">' + message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</span>';
 		     }
 
 		     if (participantId == viewerId) {
