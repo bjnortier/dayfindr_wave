@@ -353,7 +353,7 @@
 
 	 function stateUpdated() {
 	   div.innerHTML = createCalendarHTML();
-	   /*$('.comment-container').hide();*/
+	   $('.comment-container').hide();
 	   gadgets.window.adjustHeight();
 	 }
  
