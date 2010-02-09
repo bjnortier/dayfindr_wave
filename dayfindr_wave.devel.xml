@@ -356,7 +356,7 @@
 					       currentDays[i].month,
 					       currentDays[i].day);
 	     
-	     if (shouldCopyFn()) {
+	     if (shouldCopyFn(currentDay)) {
 	       newDays[copyIndex] = currentDay;
 	       ++copyIndex;
 	     } else {
