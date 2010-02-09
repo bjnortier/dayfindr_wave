@@ -360,6 +360,7 @@
 
 	 function createDelta(year, month, day) {
 
+	   console.log(clickedDate);
 	   var clickedDate = createDateStruct(year, month, day);
 	   
 	   var viewerId = wave.getViewer().getId();
