@@ -318,21 +318,22 @@
 	   }
 	 }
 
-	 function DF_Date(year, month, day) {
-	   this.year = year;
-	   this.month = month;
-	   this.day = day;
+	 function createDateStruct(year, month, day) {
+	   var date = {};
+	   date.year = year;
+	   date.month = month;
+	   date.day = day;
+	 }
 
-	   this.equals = function(that) {
-	     return this.year == that.year &&
-	            this.month == that.month &&
-	            this.day == that.day;
-	   }
+	 function dateStructsEqual(left, right) {
+	   return left.year == right.year &&
+	     left.month == right.month &&
+	     left.day == right.day;
 	 }
 
 	 function dayClicked(year, month, day) {
 
-	   var clickedDate = new DF_Date(year, month, day);
+	   var clickedDate = createDateStruct(year, month, day);
 	   
 	   var viewerId = wave.getViewer().getId();
 	   var daysJSON = wave.getState().get(viewerId, '[]');
@@ -343,11 +344,11 @@
 	   var found = false;
 	   for(var i = 0; i < currentDays.length; ++i) {
 	     
-	     var currentDay = new DF_Date(currentDays[i].year,
-				       currentDays[i].month,
-				       currentDays[i].day);
+	     var currentDay = createDateStruct(currentDays[i].year,
+					       currentDays[i].month,
+					       currentDays[i].day);
 	     
-	     if (currentDay.equals(clickedDate)) {
+	     if (dateStructsEqual(currentDay, clickedDate)) {
 	       found = true;
 	     } else {
 	       newDays[copyIndex] = currentDay;
@@ -358,7 +359,7 @@
 	   // If the result is the same length as the original,
 	   // the current day was not found so it must be appended
 	   if (!found) {
-	     newDays[copyIndex] = attend;
+	     newDays[copyIndex] = clickedDate;
 	   }
 		   
 	   var checked = wave.getState().get(viewerId);
