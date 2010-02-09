@@ -9,55 +9,59 @@
 
 	 <style  TYPE="text/css">
 
-  div.dayfindr_gadget_container {
-    text-align: center;
-  }
+	 div.dayfindr_gadget_container {
+	    text-align: center;
+         }
 
+	 div.dayfindr_month h2 {
+	   font-weight: bold;
+	   font-size: 1.2em;
+	 }
 
-  div.dayfindr_month h2 {
-    font-weight: bold;
-    font-size: 1.2em;
-  }
+	 table.dayfindr_month {
+	   margin-left: auto;
+	   margin-right: auto;
+	   margin-bottom: 1em;
+	   text-align: center;
+	   padding: 5px;
+	   border-spacing: 0px;
+	   border: solid thin black;
+	   border-collapse: collapse;
+	 }
 
-  table.dayfindr_month {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1em;
-    text-align: center;
-    padding: 5px;
-    border-spacing: 0px;
-    border: solid thin black;
-    border-collapse: collapse;
-  }
+	 table.dayfindr_month td {
+	   padding: 5px;
+	   border: solid thin grey;
+	   text-align: center;
+	 }
 
-  table.dayfindr_month td {
-  padding: 5px;
-  border: solid thin grey;
-  text-align: center;
-  }
+	 table.dayfindr_month td span, table.dayfindr_month td a {
+	   padding: 2px;
+	 }
+	 
+	 table.dayfindr_month td a {
+	   font-size: 0.5em;
+	 }
 
-  table.dayfindr_month td span, table.dayfindr_month td a {
-  padding: 5px;
-  }
+	 table.dayfindr_month th {
+	   background-color: #006;
+	   font-weight: normal;
+	   color: white;
+	 }
 
-  table.dayfindr_month th {
-  background-color: #006;
-  font-weight: normal;
-  color: white;
-  }
-
-  div.attendees {
-    text-align: left;
-  }
+	 div.attendees {
+	   text-align: left;
+	 }
   
 
-  div.footer {
-    font-size: 0.8em;
-  }
+	 div.footer {
+	   font-size: 0.8em;
+	 }
  
 	 </style>
+	 
 	 <div id="content_div"></div>
-
+	 
 	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
 	 <script type="text/javascript">
 	 
