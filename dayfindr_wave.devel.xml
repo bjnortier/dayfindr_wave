@@ -207,14 +207,14 @@
 		     if (participantId == viewerId) {
 		       var bubbleId = '' + year + '_' + month + '_' + day + '_buddle';
 		       var inputId = '' + year + '_' + month + '_' + day + '_comment_input';
-		       var divId = '' + year + '_' + month + '_' + day + '_container';
-		       var onclick = "addComment('" + divId + "','" + inputId + "'," + year + ',' + month + ',' + day + ')';
-		       var onBubble = "toggleCommentForm('" + divId + "')";
+		       var containerId = '' + year + '_' + month + '_' + day + '_container';
+		       var onclick = "addComment('" + containerId + "','" + inputId + "'," + year + ',' + month + ',' + day + ')';
+		       var onBubble = "toggleCommentForm('" + containerId + "')";
 		       
 		       calHtml += '<a class="toggle-form" href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
-		       calHtml += '<div id="' + divId + '" class="comment-container">';
+		       calHtml += '<span id="' + containerId + '" class="comment-container">';
 		       calHtml += '<input id="' + inputId +'" class="comment" type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/>';
-		       calHtml += '</div>';
+		       calHtml += '</span>';
 	
 		     }
 		     calHtml += '</div>';
