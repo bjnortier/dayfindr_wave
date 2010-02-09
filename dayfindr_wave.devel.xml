@@ -125,6 +125,7 @@
 	     var participantId = keys[i];
 	     
 	     var daysAttending = JSON.parse(wave.getState().get(participantId));
+	     console.log(wave.getState().get(participantId));
 	     for (var j = 0; j < daysAttending.length; ++j) {
 	       var date = {};
 	       date.year = daysAttending[j].year;
@@ -351,7 +352,6 @@
 	 function removeDate(array, date) {
 	   var newArray = [];
 	   for (var i = 0; i < array.length; i++) {
-	     console.log(JSON.stringify(array[i]), JSON.stringify(date));
 	     if (!dateStructsEqual(array[i], date)) {
 	       newArray.push(this[i]);
 	     }
@@ -374,6 +374,7 @@
 
 	   if (containsDate(attendingDays, clickedDate)) {
 	     attendingDays = removeDate(attendingDays, clickedDate);
+	     alert(console.log(JSON.stringify(attendingDays)));
 	   } else {
 	     attendingDays.push(clickedDate);
 	   }
