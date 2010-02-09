@@ -378,7 +378,7 @@
 		   
 	   var checked = wave.getState().get(viewerId);
 	   var delta = {};
-	   delta[viewerId] = JSON.stringify(newDays);
+	   delta[viewerId] = JSON.stringify(currentDays);
 	   wave.getState().submitDelta(delta);
 	   
 	 }
