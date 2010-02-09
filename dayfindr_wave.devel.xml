@@ -353,7 +353,7 @@
 	   var newArray = [];
 	   for (var i = 0; i < array.length; i++) {
 	     if (!dateStructsEqual(array[i], date)) {
-	       newArray.push(this[i]);
+	       newArray.push(array[i]);
 	     }
 	   }
 	   return newArray;
