@@ -39,7 +39,7 @@
 	   padding: 2px;
 	 }
 	 
-	 table.dayfindr_month td a {
+	 table.dayfindr_month toggle-form {
 	   font-size: 0.5em;
 	 }
 
@@ -210,7 +210,7 @@
 		       var onclick = "addComment('" + formId + "'," + year + ',' + month + ',' + day + ')';
 		       var onBubble = "showCommentForm('" + formId + "')";
 		       
-		       calHtml += '<a href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
+		       calHtml += '<a class="toggle-form" href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
 		       calHtml += '<form class="commentform" id="' + formId + '"><input type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 	
 		     }
