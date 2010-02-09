@@ -211,8 +211,8 @@
 		       var onclick = "addComment('" + divId + "','" + inputId + "'," + year + ',' + month + ',' + day + ')';
 		       var onBubble = "toggleCommentForm('" + divId + "')";
 		       
-		       calHtml += '<div id="' + divId + '">';
 		       calHtml += '<a class="toggle-form" href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
+		       calHtml += '<div id="' + divId + '">';
 		       calHtml += '<input id="' + inputId +'" class="comment" type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/></form>';
 		       calHtml += '</div>';
 	
