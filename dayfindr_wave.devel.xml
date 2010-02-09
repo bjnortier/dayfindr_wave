@@ -39,7 +39,7 @@
 	   padding: 2px;
 	 }
 
-	 table.dayfindr_month comment-container {
+	 table.dayfindr_month .comment-container {
 	   margin: 0px;
 	   padding: 0px;
 	 }
