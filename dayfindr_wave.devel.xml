@@ -10,7 +10,7 @@
 	 <style  TYPE="text/css">
 	 </style>
 	 
-	 <div id="content_div"></div>
+	 <div id="content_div">Bar</div>
 	 
 	 <script type="text/javascript">
 
