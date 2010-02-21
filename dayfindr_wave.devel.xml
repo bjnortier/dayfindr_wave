@@ -17,7 +17,7 @@
 
 	 var div = document.getElementById('content_div');
 	 function stateUpdated() {
-	   div.innerHTML = createCalendarHTML();
+	   div.innerHTML = '<div>Foo</div>';
 	   $('.comment-container').hide();
 	   gadgets.window.adjustHeight();
 	 }
