@@ -18,7 +18,7 @@
 
 	 function stateUpdated() {
 
-           var template1 = createMonthTemplate(2010, 2);
+           /*var template1 = createMonthTemplate(2010, 2);
 	   var template2 = createMonthTemplate(2010, 3);
 
            var view = viewFromState([[2010, 2],[2010,3]], 'bjnortier@gmail.com', wave);
@@ -26,7 +26,7 @@
 	   var html2 = Mustache.to_html(template2, view);
     
            document.getElementById('content_div').innerHtml = html1 + html2
-	   gadgets.window.adjustHeight();
+	   gadgets.window.adjustHeight();*/
 	 }
  
 	 function init() {
