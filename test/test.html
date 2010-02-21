@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>Dayfindr Wave Test Page</title>
+<script type="text/javascript" src="../../mustache.js/mustache.js"></script>
+<script type="text/javascript" src="../dayfindr_wave.js"></script>
+<script type="text/javascript">
+
+function MockState() {
+  this.state = {};
+
+}
+
+function MockViewer(viewerId) {
+  this.id = viewerId;
+  this.getId = function() {
+    return viewerId;
+  }
+}
+
+function MockParticipant(id, displayname, thumbnail) {
+  this.id = id;
+  this.displayname = displayname;
+  this.thumbnail = thumbnail;
+
+  this.getDisplayName = function() {
+    return this.displayname;
+  }
+
+  this.getThumbnailUrl = function() {
+    return this.thumbnail;
+  }
+}
+
+function MockState(hash) {
+  this.hash = hash;
+
+  this.getKeys = function() {
+    var keys = [];
+    for(i in this.hash) if (this.hash.hasOwnProperty(i)) {
+      keys.push(i);
+    }
+    return keys;
+  }
+
+  this.get = function (key) {
+    return hash[key];
+  }
+}
+
+function MockWave(viewerId, state) {
+
+  this.viewer = new MockViewer(viewerId);
+  this.state = new MockState(state);
+  this.participants = { 'bjnortier@googlewave.com' : new MockParticipant('bjnortier@googlewave.com', 'Ben Nortier', 'http://example.com'),
+                         'foo@googlewave.com' : new MockParticipant('foo@googlewave.com', 'Foo', 'http://example.com') };
+
+  this.getViewer = function() {
+    return this.viewer;
+  }
+
+  this.getState = function() {
+    return this.state;
+  }
+
+  this.getParticipantById = function(id) {
+    return this.participants[id];
+  }
+
+}
+
+var dayfindr_state = {};
+dayfindr_state['bjnortier@googlewave.com'] = ['{"year" : 2010, "month" : 2, "day" : 1}', '{"year" : 2010, "month" : 3, "day" : 15}'];
+dayfindr_state['foo@googlewave.com'] = ['{"year" : 2010, "month" : 2, "day" : 28, "message" : "I\'m foo"}'];
+
+var wave = new MockWave('bjnortier@gmail.com', dayfindr_state);
+
+var template1 = createMonthTemplate(2010, 2);
+var template2 = createMonthTemplate(2010, 3);
+
+var view = viewFromState([[2010, 2],[2010,3]], 'bjnortier@gmail.com', wave);
+var html1 = Mustache.to_html(template1, view);
+var html2 = Mustache.to_html(template2, view);
+
+</script>
+
+</head>
+
+<body>
+
+<script type="text/javascript">
+document.write(html1);
+document.write(html2);
+
+</script>
+
+</body>
+</html>
