@@ -19,7 +19,11 @@
 
 	 var div = document.getElementById('content_div');
 	 function stateUpdated() {
-	   div.innerHTML = '<div>Foo6</div>';
+	   div.innerHTML = '<div>Foo7</div>';
+
+           var template1 = createMonthTemplate(2010, 2);
+	   var template2 = createMonthTemplate(2010, 3);
+
 	   gadgets.window.adjustHeight();
 	 }
  
