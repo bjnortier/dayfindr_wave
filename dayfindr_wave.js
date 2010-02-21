@@ -1,12 +1,11 @@
 
-/*Object.prototype.keys = function () {
+function getKeys(hash) {
   var keys = [];
-  for(i in this) if (this.hasOwnProperty(i))
-  {
-    keys.push(i);
-  }
+  for(i in hash) if (hash.hasOwnProperty(i)) {
+      keys.push(i);
+    }
   return keys;
-  }*/
+}
 
 function daysInMonth(year, month) {
   return 32 - new Date(year, month-1, 32).getDate();
@@ -151,7 +150,7 @@ function viewFromState(yearsAndMonths, viewerId, wave) {
     addDayLink(view, year, month);
   }
   
-  var dates = transformed.datesToAttendees.keys();
+  var dates = getKeys(transformed.datesToAttendees);
   for (var i = 0; i < dates.length; ++i) {
     var attendeesKey = dates[i];
     var participantIds =  transformed.datesToAttendees[attendeesKey];
