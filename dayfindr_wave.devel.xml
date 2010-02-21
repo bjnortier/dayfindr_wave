@@ -17,7 +17,6 @@
 	 <script src="http://github.com/bjnortier/dayfindr_wave/raw/introduce_moustache/dayfindr_wave.js"></script>
 	 <script type="text/javascript">
 
-	 var div = document.getElementById('content_div');
 	 function stateUpdated() {
 
            var template1 = createMonthTemplate(2010, 2);
@@ -27,7 +26,7 @@
 	   var html2 = Mustache.to_html(template2, view);
 	   console.log(html1);
 	   console.log(html2);
-           div.innerHtml = '<div>X</div>' + html1 + html2 + '<div>Y</div>';
+           document.getElementById('content_div').innerHtml = '<div>X</div>' + html1 + html2 + '<div>Y</div>';
 
 	   gadgets.window.adjustHeight();
 	 }
