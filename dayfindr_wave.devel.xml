@@ -18,7 +18,7 @@
 
 	 var div = document.getElementById('content_div');
 	 function stateUpdated() {
-	   div.innerHTML = '<div>Foo2</div>';
+	   div.innerHTML = '<div>Foo3</div>';
 	   gadgets.window.adjustHeight();
 	 }
  
