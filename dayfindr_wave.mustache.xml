@@ -35,6 +35,7 @@
 	   }
 
 	 }
+	 document.getElementById('content_div').innerHTML = 'foo';
 	 gadgets.util.registerOnLoadHandler(init);
 
 	 </script>
