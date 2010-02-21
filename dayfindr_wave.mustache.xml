@@ -13,8 +13,29 @@
 	 <div id="content_div"></div>
 	 
 	 <script src="http://github.com/bjnortier/dayfindr_wave/raw/introduce_moustache/dayfindr_wave.js"/>
+	 <script type="text/javascript" src="http://github.com/janl/mustache.js/raw/0b2dcc5531cf8fe9d247f1533348cd62d44d7f9e/mustache.js"/>
 	 <script type="text/javascript">
-	 alert('foo');
+
+	 function stateUpdated() {
+
+           var template1 = createMonthTemplate(2010, 2);
+	   var template2 = createMonthTemplate(2010, 3);
+
+           var view = viewFromState([[2010, 2],[2010,3]], 'bjnortier@gmail.com', wave);
+	   var html1 = Mustache.to_html(template1, view);
+	   var html2 = Mustache.to_html(template2, view);
+
+	   gadgets.window.adjustHeight();
+	 }
+ 
+	 function init() {
+	   if (wave && wave.isInWaveContainer()) {
+	     wave.setStateCallback(stateUpdated);
+	   }
+
+	 }
+	 gadgets.util.registerOnLoadHandler(init);
+
 	 </script>
 	 
 	  ]]> 
