@@ -19,7 +19,6 @@
 
 	 var div = document.getElementById('content_div');
 	 function stateUpdated() {
-	   div.innerHTML = '<div>Foo7</div>';
 
            var template1 = createMonthTemplate(2010, 2);
 	   var template2 = createMonthTemplate(2010, 3);
@@ -28,8 +27,7 @@
 	   var html2 = Mustache.to_html(template2, view);
 	   console.log(html1);
 	   console.log(html2);
-           div.innerHtml = html1 + html2
-	   gadgets.window.adjustHeight();
+           div.innerHtml = '<div>X</div>' + html1 + html2 + '<div>Y</div>';
 
 	   gadgets.window.adjustHeight();
 	 }
