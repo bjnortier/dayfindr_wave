@@ -1,12 +1,12 @@
 
-Object.prototype.keys = function () {
+/*Object.prototype.keys = function () {
   var keys = [];
   for(i in this) if (this.hasOwnProperty(i))
   {
     keys.push(i);
   }
   return keys;
-}
+  }*/
 
 function daysInMonth(year, month) {
   return 32 - new Date(year, month-1, 32).getDate();
