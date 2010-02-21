@@ -10,16 +10,13 @@
 	 <style  TYPE="text/css">
 	 </style>
 
-         <script src="http://github.com/bjnortier/dayfindr_wave/raw/introduce_moustache/dayfindr_wave.js"/>
-	 <script type="text/javascript" src="http://github.com/janl/mustache.js/raw/0b2dcc5531cf8fe9d247f1533348cd62d44d7f9e/mustache.js"/>
-	 
 	 <div id="content_div">Bar</div>
 	 
 	 <script type="text/javascript">
 
 	 var div = document.getElementById('content_div');
 	 function stateUpdated() {
-	   div.innerHTML = '<div>Foo2</div>';
+	   div.innerHTML = '<div>Foo</div>';
 	   gadgets.window.adjustHeight();
 	 }
  
