@@ -11,7 +11,6 @@
 	 </style>
 
 	 <div id="content_div">Bar</div>
-	 <script src="http://github.com/janl/mustache.js/raw/0b2dcc5531cf8fe9d247f1533348cd62d44d7f9e/mustache.js" type="text/javascript"></script>
 	 <script type="text/javascript">
 
 	 var div = document.getElementById('content_div');
