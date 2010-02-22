@@ -13,10 +13,12 @@
     margin-right: auto;
     margin-bottom: 1em;
     text-align: center;
+    vertical-align: top;
     padding: 5px;
     border-spacing: 0px;
     border: solid thin black;
     border-collapse: collapse;
+
 }
 
 .dayfindr_month td {
