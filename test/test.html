@@ -92,14 +92,8 @@ var wave = new MockWave('bjnortier@googlewave.com', dayfindr_state);
 
 
 function updateUI() {
-  var template1 = createMonthTemplate(2010, 2);
-  var template2 = createMonthTemplate(2010, 3);
 
-  var view = viewFromState([[2010, 2],[2010, 3]], wave);
-  var html1 = Mustache.to_html(template1, view);
-  var html2 = Mustache.to_html(template2, view);
-
-  document.getElementById('content_div').innerHTML = html1 + html2;
+  document.getElementById('content_div').innerHTML = getGadgetHtml(wave);
 }
 
 </script>

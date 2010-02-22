@@ -217,4 +217,56 @@ function dayClicked(year, month, day) {
   wave.getState().submitDelta(delta);
 }
 
+function getNextYearAndMonth(year, month) {
+  var yearAndMonth = [];
+  if (month == 12) {
+    yearAndMonth[0] = year + 1;
+    yearAndMonth[1] = 1;
+  } else {
+    yearAndMonth[0] = year;
+    yearAndMonth[1] = month + 1;
+  }
+  return yearAndMonth;
+}
+
+function updateMonthsInclusive(increment) {
+  var delta = {};
+  var numberOfMonths = wave.getState().get('_months_inclusive', 2);
+  delta['_months_inclusive'] = numberOfMonths + increment;
+  wave.getState().submitDelta(delta);
+}
+
+function getGadgetHtml(wave) {
+  var numberOfMonths = wave.getState().get('_months_inclusive', 2);
+
+  var today = new Date();
+  year = today.getFullYear();
+  month = today.getMonth() + 1;
+       
+  var templates = [];
+  var yearsAndMonths = [];
+  for (var i = 0; i < numberOfMonths; ++i) {
+    templates[i] = createMonthTemplate(year, month);
+    yearsAndMonths.push([year, month]);
+
+    var nextYearAndMonth = getNextYearAndMonth(year, month);
+    year = nextYearAndMonth[0];
+    month = nextYearAndMonth[1];
+  }
+
+  var view = viewFromState(yearsAndMonths, wave);
+
+  var html = '';
+  for (var i = 0; i < templates.length; ++i) {
+    html += Mustache.to_html(templates[i], view);
+  }
+
+  if (numberOfMonths > 1) {
+    html += '<button type="button" onclick="updateMonthsInclusive(-1)">-</button>';
+  }
+  html += '<button type="button" onclick="updateMonthsInclusive(1)">+</button>';
+
+  return html;
+}
+
 
