@@ -21,25 +21,7 @@
 
     function stateUpdated() {
 
-        var template1 = createMonthTemplate(2010, 2);
-        var template2 = createMonthTemplate(2010, 3);
-        var view = viewFromState([[2010, 2],[2010,3]], 'bjnortier@gmail.com', wave);
-        var html1 = Mustache.to_html(template1, view);
-        var html2 = Mustache.to_html(template2, view);
-       /*console.log(html1);
-       console.log(html2);
-           document.getElementById('content_div').innerHtml = '<div>X</div><div>Y</div>';
-
-       gadgets.window.adjustHeight();*/
        div.innerHTML = '<div>XXX</div>';
-           console.log('b');
-
-      /*if(!wave.getState().get('count')) {
-        div.innerHTML = "The count is 0."
-      }
-      else {
-        div.innerHTML = "The count is " + wave.getState().get('count');
-      } */
     }
  
     function init() {
