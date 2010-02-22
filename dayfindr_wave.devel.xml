@@ -17,6 +17,7 @@
     var div = document.getElementById('content_div');
 
     function stateUpdated() {
+       console.log(JSON.stringify(wave.getState()));
        div.innerHTML = getGadgetHtml(wave);
        gadgets.window.adjustHeight();
 
