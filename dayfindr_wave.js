@@ -236,6 +236,26 @@ function updateMonthsInclusive(increment) {
   wave.getState().submitDelta(delta);
 }
 
+var month_names = [];
+month_names[0] = "January";
+month_names[1] = "February";
+month_names[2] = "March";
+month_names[3] = "April";
+month_names[4] = "May";
+month_names[5] = "June";
+month_names[6] = "July";
+month_names[7] = "August";
+month_names[8] = "September";
+month_names[9] = "October";
+month_names[10] = "November";
+month_names[11] = "December";
+
+function getHeading(yearAndMonth) {
+  var year = yearAndMonth[0];
+  var month = yearAndMonth[1];
+  return month_names[month - 1] + ' ' + year;
+}
+
 function getGadgetHtml(wave) {
   var numberOfMonths = wave.getState().get('_months_inclusive', 2);
 
@@ -258,6 +278,7 @@ function getGadgetHtml(wave) {
 
   var html = '';
   for (var i = 0; i < templates.length; ++i) {
+    html += getHeading(yearsAndMonths[i]);
     html += Mustache.to_html(templates[i], view);
   }
 
