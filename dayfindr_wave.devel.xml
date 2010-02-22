@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module>
-<ModulePrefs title="State Example" height="120">
+<ModulePrefs title="Dayfindr Wave Gadget" height="800" scrolling="true">
   <Require feature="wave" /> 
+  <Require feature="dynamic-height" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[ 
@@ -52,6 +53,7 @@
          html += Mustache.to_html(templates[i], view);
        }
        div.innerHTML = html;
+       gadgets.window.adjustHeight();
 
     }
  
