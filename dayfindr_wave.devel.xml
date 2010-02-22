@@ -21,9 +21,10 @@
 
     function stateUpdated() {
 
-       console.log('a');
+       console.log('b');
        var template1 = createMonthTemplate(2010, 2);
        var view = viewFromState([[2010, 2],[2010,3]], 'bjnortier@gmail.com', wave);
+       var html1 = Mustache.to_html(template1, view);
        div.innerHTML = '<div>XXX1</div>';
     }
  
