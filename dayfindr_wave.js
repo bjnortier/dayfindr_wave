@@ -145,7 +145,7 @@ function addDayLink(view, year, month) {
 
 function viewFromState(yearsAndMonths, wave) {
 
-  vat viewerId = wave.getViewer().getId();
+  var viewerId = wave.getViewer().getId();
   var transformed = transformState(wave.getState());
   var view = {};
 
