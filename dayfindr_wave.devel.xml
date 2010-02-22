@@ -31,15 +31,15 @@
            document.getElementById('content_div').innerHtml = '<div>X</div><div>Y</div>';
 
        gadgets.window.adjustHeight();*/
-       $('#content_div').html = '<div>XXX</div>';
+       div.innerHTML = '<div>XXX</div>';
            console.log('b');
 
-      if(!wave.getState().get('count')) {
+      /*if(!wave.getState().get('count')) {
         div.innerHTML = "The count is 0."
       }
       else {
         div.innerHTML = "The count is " + wave.getState().get('count');
-      } 
+      } */
     }
  
     function init() {
