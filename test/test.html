@@ -43,8 +43,20 @@ function MockState(hash) {
     return keys;
   }
 
-  this.get = function (key) {
-    return hash[key];
+  this.get = function (key, def) {
+    var value = hash[key];
+    if (value == undefined) {
+return def;
+    }
+    return value;
+  }
+
+  this.submitDelta = function(delta) {
+    var newKeys = getKeys(delta);
+    for (var i = 0; i < newKeys.length; ++i) {
+      this.hash[newKeys[i]] = delta[newKeys[i]];
+    }
+    updateUI();
   }
 }
 
@@ -70,17 +82,23 @@ function MockWave(viewerId, state) {
 }
 
 var dayfindr_state = {};
-dayfindr_state['bjnortier@googlewave.com'] = ['{"year" : 2010, "month" : 2, "day" : 1}', '{"year" : 2010, "month" : 3, "day" : 15}'];
-dayfindr_state['foo@googlewave.com'] = ['{"year" : 2010, "month" : 2, "day" : 28, "message" : "I\'m foo"}'];
+/*dayfindr_state['bjnortier@googlewave.com'] = ['{"year" : 2010, "month" : 2, "day" : 1}', '{"year" : 2010, "month" : 3, "day" : 15}'];
+dayfindr_state['foo@googlewave.com'] = ['{"year" : 2010, "month" : 2, "day" : 28, "message" : "I\'m foo"}'];*/
 
-var wave = new MockWave('bjnortier@gmail.com', dayfindr_state);
+var wave = new MockWave('bjnortier@googlewave.com', dayfindr_state);
 
-var template1 = createMonthTemplate(2010, 2);
-var template2 = createMonthTemplate(2010, 3);
 
-var view = viewFromState([[2010, 2],[2010,3]], 'bjnortier@gmail.com', wave);
-var html1 = Mustache.to_html(template1, view);
-var html2 = Mustache.to_html(template2, view);
+
+function updateUI() {
+  var template1 = createMonthTemplate(2010, 2);
+  var template2 = createMonthTemplate(2010, 3);
+
+  var view = viewFromState([[2010, 2],[2010,3]], 'bjnortier@gmail.com', wave);
+  var html1 = Mustache.to_html(template1, view);
+  var html2 = Mustache.to_html(template2, view);
+
+  document.getElementById('content_div').innerHTML = html1 + html2;
+}
 
 </script>
 
@@ -88,10 +106,10 @@ var html2 = Mustache.to_html(template2, view);
 
 <body>
 
-<script type="text/javascript">
-document.write(html1);
-document.write(html2);
+<div id="content_div"></div>
 
+<script type="text/javascript">
+  updateUI();
 </script>
 
 </body>

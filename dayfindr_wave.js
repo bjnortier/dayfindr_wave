@@ -28,6 +28,10 @@ function createDateStruct(year, month, day) {
   return date;
 }
 
+function dateStructsEqual(left, right) {
+  return left.year == right.year && left.month == right.month && left.day == right.day;
+}
+
 function templatePlaceholder(date) {
   return '' + date.year + '_' + date.month + '_' + date.day;
 }
@@ -93,7 +97,7 @@ function transformState(state) {
   for (var i = 0; i < keys.length; ++i) {
     var participantId = keys[i];
 
-    var infos = state.get(participantId);
+    var infos = JSON.parse(state.get(participantId));
     for (var k = 0; k <infos.length; ++k) {
       
       var participantInfo = infos[k];
