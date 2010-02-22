@@ -93,9 +93,10 @@ function transformState(state) {
   for (var i = 0; i < keys.length; ++i) {
     var participantId = keys[i];
 
-    for (var k = 0; k < state.get(participantId).length; ++k) {
+    var infos = state.get(participantId);
+    for (var k = 0; k <infos.length; ++k) {
       
-      var participantInfo = JSON.parse(state.get(participantId)[k]);
+      var participantInfo = infos[k];
       
       var date = { year  : participantInfo.year,
 		   month : participantInfo.month,
