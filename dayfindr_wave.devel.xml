@@ -30,6 +30,7 @@
            document.getElementById('content_div').innerHtml = '<div>X</div><div>Y</div>';
 
 	   gadgets.window.adjustHeight();*/
+	   $('#content_div').html = '<div>XXX</div>';
 	 }
  
 	 function init() {
