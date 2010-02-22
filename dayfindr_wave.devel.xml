@@ -19,6 +19,7 @@
 
 	 function stateUpdated() {
 
+           console.log('a');
            document.getElementById('content_div').innerHtml = '10';
            var template1 = createMonthTemplate(2010, 2);
 	   var template2 = createMonthTemplate(2010, 3);
@@ -31,6 +32,7 @@
 
 	   gadgets.window.adjustHeight();*/
 	   $('#content_div').html = '<div>XXX</div>';
+           console.log('b');
 	 }
  
 	 function init() {
