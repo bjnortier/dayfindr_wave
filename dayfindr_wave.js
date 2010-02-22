@@ -236,7 +236,7 @@ function getNextYearAndMonth(year, month) {
 
 function updateMonthsInclusive(increment) {
   var delta = {};
-  var numberOfMonths = wave.getState().get('_months_inclusive', 2);
+  var numberOfMonths = JSON.parse(wave.getState().get('_months_inclusive', '2'));
   delta['_months_inclusive'] = numberOfMonths + increment;
   wave.getState().submitDelta(delta);
 }
@@ -262,7 +262,7 @@ function getHeading(yearAndMonth) {
 }
 
 function getGadgetHtml(wave) {
-  var numberOfMonths = wave.getState().get('_months_inclusive', 2);
+  var numberOfMonths = wave.getState().get('_months_inclusive', '2');
 
   var today = new Date();
   year = today.getFullYear();
