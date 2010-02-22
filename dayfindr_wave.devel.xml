@@ -21,7 +21,9 @@
 
     function stateUpdated() {
 
-       div.innerHTML = '<div>XXX</div>';
+       console.log('a');
+       var template1 = createMonthTemplate(2010, 2);
+       div.innerHTML = '<div>XXX1</div>';
     }
  
     function init() {
