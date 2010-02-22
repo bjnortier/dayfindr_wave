@@ -7,7 +7,7 @@
 <![CDATA[ 
 <div id="content_div" class="dayfindr_month" style="height: 50px;"></div>
 
-    <link rel="stylesheet" href="" type="text/css" charset="utf-8"/
+    <link rel="stylesheet" href="" type="text/css" charset="utf-8"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
     <script src="http://github.com/janl/mustache.js/raw/0b2dcc5531cf8fe9d247f1533348cd62d44d7f9e/mustache.js"></script>
     <script src="http://github.com/bjnortier/dayfindr_wave/raw/introduce_moustache/dayfindr_wave.js"></script>
