@@ -1,0 +1,34 @@
+.dayfindr_month {
+    text-align: center;
+}
+
+
+.dayfindr_month h2 {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.dayfindr_month table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+    text-align: center;
+    padding: 5px;
+    border-spacing: 0px;
+    border: solid thin black;
+    border-collapse: collapse;
+}
+
+.dayfindr_month td {
+    padding: 5px;
+    border: solid thin grey;
+    text-align: center;
+}
+
+
+.dayfindr_month th {
+    background-color: #006;
+    font-weight: normal;
+    color: white;
+}
+
