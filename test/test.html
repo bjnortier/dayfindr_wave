@@ -95,7 +95,7 @@ function updateUI() {
   var template1 = createMonthTemplate(2010, 2);
   var template2 = createMonthTemplate(2010, 3);
 
-  var view = viewFromState('bjnortier@gmail.com', wave);
+  var view = viewFromState([[2010, 2],[2010, 3]], wave);
   var html1 = Mustache.to_html(template1, view);
   var html2 = Mustache.to_html(template2, view);
 
@@ -108,7 +108,7 @@ function updateUI() {
 
 <body>
 
-<div id="content_div"></div>
+<div id="content_div" class="dayfindr_content"></div>
 
 <script type="text/javascript">
   updateUI();

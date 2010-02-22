@@ -81,6 +81,7 @@ function createMonthTemplate(year, month) {
 	var dateStruct = dateFromJsDate(jsdate);
    	template += '<td>{{{' + templatePlaceholder(dateStruct) + '}}}</td>';
       }
+      --numberOfDaysLeft;
     }
     template += "</tr>";
   }

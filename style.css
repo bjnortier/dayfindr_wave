@@ -1,14 +1,14 @@
-.dayfindr_month {
+.dayfindr_content {
     text-align: center;
 }
 
 
-.dayfindr_month h2 {
+.dayfindr_content h2 {
     font-weight: bold;
     font-size: 1.2em;
 }
 
-.dayfindr_month table {
+.dayfindr_content table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1em;
@@ -21,14 +21,14 @@
 
 }
 
-.dayfindr_month td {
+.dayfindr_content td {
     padding: 5px;
     border: solid thin grey;
     text-align: center;
 }
 
 
-.dayfindr_month th {
+.dayfindr_content th {
     background-color: #006;
     font-weight: normal;
     color: white;
