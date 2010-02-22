@@ -96,6 +96,11 @@ function transformState(state) {
   var keys = state.getKeys();
 
   for (var i = 0; i < keys.length; ++i) {
+    // Disregard special keys (starting with '_')
+    if (keys[i].indexOf('_') == 0) {
+      continue;
+    }
+    
     var participantId = keys[i];
 
     var infos = JSON.parse(state.get(participantId));
