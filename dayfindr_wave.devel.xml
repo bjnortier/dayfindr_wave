@@ -23,6 +23,7 @@
 
        console.log('a');
        var template1 = createMonthTemplate(2010, 2);
+       var view = viewFromState([[2010, 2],[2010,3]], 'bjnortier@gmail.com', wave);
        div.innerHTML = '<div>XXX1</div>';
     }
  
