@@ -258,7 +258,7 @@ month_names[11] = "December";
 function getHeading(yearAndMonth) {
   var year = yearAndMonth[0];
   var month = yearAndMonth[1];
-  return month_names[month - 1] + ' ' + year;
+  return '<h2>' + month_names[month - 1] + ' ' + year + '</h2>';
 }
 
 function getGadgetHtml(wave) {
