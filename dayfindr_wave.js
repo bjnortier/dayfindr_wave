@@ -162,6 +162,7 @@ function viewFromState(yearsAndMonths, wave) {
     addDayLink(view, year, month);
   }
   
+  // Add the attendees
   var dates = getKeys(transformed.datesToAttendees);
   for (var i = 0; i < dates.length; ++i) {
     var attendeesKey = dates[i];
@@ -176,6 +177,32 @@ function viewFromState(yearsAndMonths, wave) {
       var participant = wave.getParticipantById(participantId)
       var thumbnailURL = participant.getThumbnailUrl();
       html += '<img src="' + thumbnailURL + '" title="' + participant.getDisplayName() + '" + alt="' + participantId + '" width="27px" height="27px" onload="gadgets.window.adjustHeight();"/>';
+
+
+      var message = "";
+      if ((transformed.datesToMessages[attendeesKey] != undefined) &&
+	  (transformed.datesToMessages[attendeesKey][participantId] != undefined)) {
+	message = transformed.datesToMessages[attendeesKey][participantId];
+	html += '<span class="comment">' + message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</span>';
+      }
+ 
+      if (participantId ==  wave.getViewer().getId()) {
+	var date = JSON.parse(attendeesKey);
+	var year = date.year;
+	var month = date.month;
+	var day = date.day;
+	var bubbleId = '' + year + '_' + month + '_' + day + '_bubble';
+	var inputId = '' + year + '_' + month + '_' + day + '_comment_input';
+	var containerId = '' + year + '_' + month + '_' + day + '_container';
+	var onclick = "addComment('" + containerId + "','" + inputId + "'," + year + ',' + month + ',' + day + ')';
+	var onBubble = "toggleCommentForm('" + containerId + "')";
+		       
+	html += '<a class="toggle-form" href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
+	html += '<p id="' + containerId + '" class="comment-container">';
+	html += '<input id="' + inputId +'" class="comment" type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/>';
+	html += '</p>';
+	
+      }
     }
     html += '</div>';
     
@@ -201,6 +228,41 @@ function removeDate(array, date) {
     }
   }
   return newArray;
+}
+
+function toggleCommentForm(containerId) {
+  var form = $('#' + containerId);
+  if (form.is(":visible")) {
+    form.hide();
+  } else {
+    form.show();
+  }
+}
+
+function updateMessage(array, date, message) {
+  for (var i = 0; i < array.length; i++) {
+    if (dateStructsEqual(array[i], date)) {
+      array[i].message = message;
+    }
+  }
+}
+
+function addComment(divId, inputId, year, month, day) {
+ 
+  var comment = $('#' + inputId)[0].value;
+  
+  var clickedDate = createDateStruct(year, month, day);
+  
+  var viewerId = wave.getViewer().getId();
+  var daysJSON = wave.getState().get(viewerId, '[]');
+  var attendingDays = JSON.parse(daysJSON);
+  
+  updateMessage(attendingDays, clickedDate, comment);
+  
+  var delta = {};
+  delta[viewerId] = JSON.stringify(attendingDays);
+  wave.getState().submitDelta(delta);
+  
 }
 
 function dayClicked(year, month, day) {

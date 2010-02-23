@@ -4,6 +4,7 @@
 <title>Dayfindr Wave Test Page</title>
 
 <link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
 <script type="text/javascript" src="../../mustache.js/mustache.js"></script>
 <script type="text/javascript" src="../dayfindr_wave.js"></script>
 <script type="text/javascript">
@@ -94,6 +95,7 @@ var wave = new MockWave('bjnortier@googlewave.com', dayfindr_state);
 function updateUI() {
 
   document.getElementById('content_div').innerHTML = getGadgetHtml(wave);
+  $('.comment-container').hide();
 }
 
 </script>
