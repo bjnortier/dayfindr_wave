@@ -170,14 +170,13 @@ function viewFromState(yearsAndMonths, wave) {
 
     var viewKey = templatePlaceholder(JSON.parse(attendeesKey));
     var html = view[viewKey];
-    html += '<div class="attendees">';
-    for (var k = 0; k < participantIds.length; ++k) {
 
+    for (var k = 0; k < participantIds.length; ++k) {
+      html += '<div class="attendee">';
       var participantId = participantIds[k];
       var participant = wave.getParticipantById(participantId)
       var thumbnailURL = participant.getThumbnailUrl();
       html += '<img src="' + thumbnailURL + '" title="' + participant.getDisplayName() + '" + alt="' + participantId + '" width="27px" height="27px" onload="gadgets.window.adjustHeight();"/>';
-
 
       var message = "";
       if ((transformed.datesToMessages[attendeesKey] != undefined) &&
@@ -201,9 +200,9 @@ function viewFromState(yearsAndMonths, wave) {
 	html += '<p id="' + containerId + '" class="comment-container">';
 	html += '<input id="' + inputId +'" class="comment" type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/>';
       }
-      html += '</p>';
+      html += '</div>';
     }
-    html += '</div>';
+
     
     view[viewKey] = html;
   }
