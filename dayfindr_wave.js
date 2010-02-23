@@ -191,18 +191,17 @@ function viewFromState(yearsAndMonths, wave) {
 	var year = date.year;
 	var month = date.month;
 	var day = date.day;
-	var bubbleId = '' + year + '_' + month + '_' + day + '_bubble';
+
 	var inputId = '' + year + '_' + month + '_' + day + '_comment_input';
 	var containerId = '' + year + '_' + month + '_' + day + '_container';
-	var onclick = "addComment('" + containerId + "','" + inputId + "'," + year + ',' + month + ',' + day + ')';
+	var onclick = "addComment('" + inputId + "'," + year + ',' + month + ',' + day + ')';
 	var onBubble = "toggleCommentForm('" + containerId + "')";
 		       
-	html += '<a class="toggle-form" href="#" id="' + bubbleId + '" onclick="' + onBubble + '" />&#0133;</a>';
+	html += '<a class="toggle-form" href="#" onclick="' + onBubble + '" />&#0133;</a>';
 	html += '<p id="' + containerId + '" class="comment-container">';
 	html += '<input id="' + inputId +'" class="comment" type="text" name="comment" value="' + message + '" size="10"/><input type="button" onclick="' + onclick + '" value="Ok"/>';
-	html += '</p>';
-	
       }
+      html += '</p>';
     }
     html += '</div>';
     
@@ -247,7 +246,7 @@ function updateMessage(array, date, message) {
   }
 }
 
-function addComment(divId, inputId, year, month, day) {
+function addComment(inputId, year, month, day) {
  
   var comment = $('#' + inputId)[0].value;
   
@@ -350,9 +349,11 @@ function getGadgetHtml(wave) {
   }
 
   if (numberOfMonths > 1) {
-    html += '<button type="button" onclick="updateMonthsInclusive(-1)">-</button>';
+    html += '<button title="Remove month" type="button" onclick="updateMonthsInclusive(-1)">-</button>';
   }
-  html += '<button type="button" onclick="updateMonthsInclusive(1)">+</button>';
+  html += '<button title="Add month" type="button" onclick="updateMonthsInclusive(1)">+</button>';
+  html += '<div class="footer">Gadget URL: http://github.com/bjnortier/dayfindr_wave/raw/master/dayfindr_wave.xml';
+  html += '<br>v0.6 &copy;2010 <a href="http://www.1011ltd.com">1011 Ltd</a></div>';
 
   return html;
 }
